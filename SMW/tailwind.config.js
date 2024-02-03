@@ -1,12 +1,15 @@
 import daisyui from 'daisyui';
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       colors: {
         colorMain: '#008AFF',
         textColorMain: '#fff',
+      },
+      fontFamily: {
+        display: 'Jaldi, sans-serif',
       },
     },
   },
