@@ -25,7 +25,7 @@ const TextInput = ({
         id={TextLabel}
         placeholder={placeHolder}
         type="text"
-        className={` ${customCssInput}  outline-none transition-all hover:outline-colorMain focus:outline-colorMain rounded `}
+        className={` ${customCssInput} hover:border-colorMain outline-none transition-all border-2 p-1 border-gray-500 rounded `}
         value={text}
         onChange={handleInputChange}
       />

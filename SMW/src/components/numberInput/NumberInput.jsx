@@ -25,7 +25,7 @@ const NumberInput = ({
       {numberLabel ? <label htmlFor={numberLabel}> {numberLabel} </label> : ''}
       <input
         id={numberLabel}
-        className={` ${customCssInput}  outline-none transition-all hover:outline-colorMain focus:outline-colorMain rounded `}
+        className={` ${customCssInput}  outline-none  transition-all border-2 p-1 border-gray-500 hover:border-colorMain rounded `}
         type="number"
         step="0.01"
         value={number}
