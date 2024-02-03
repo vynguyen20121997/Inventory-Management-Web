@@ -9,22 +9,21 @@ const NavBar = ({ children }) => {
 
   return (
     <>
-      {" "}
       <div className=" grid  grid-rows-10 grid-cols-10  h-screen bg-gray-100  text-black">
         <div className="flex-col row-span-10 col-span-1  bg-white ">
           <div className="flex justify-center py-5">
             <img src={LogoIcon} alt="logo" />
           </div>
           <div className="mx-auto px-1">
-            {NAVBAR_ITEMS.map((e) => (
+            {NAVBAR_ITEMS.map(({ path, link }) => (
               <>
                 <div className="">
                   <button
-                    onClick={() => navigate(e.path)}
+                    onClick={() => navigate(path)}
                     className="tooltip btn btn-ghost w-full text-left "
-                    data-tip={e.link}
+                    data-tip={link}
                   >
-                    <p>{e.link}</p>
+                    <p className="font-normal">{link}</p>
                   </button>
                 </div>
               </>
@@ -33,7 +32,7 @@ const NavBar = ({ children }) => {
         </div>
         <div className=" flex-none row-span-1 col-span-9 navbar bg-white justify-between ">
           <div>
-            <p className="text-xl btn btn-ghost ">Welcome! Black Adam</p>
+            <p className="text-xl font-normal    ">Welcome! Black Adam</p>
           </div>
           <div>
             <div className="dropdown dropdown-end">
@@ -50,14 +49,14 @@ const NavBar = ({ children }) => {
                 tabIndex={0}
                 className=" z-[1] shadow menu menu-sm dropdown-content bg-white rounded-box "
               >
-                {NAVPROFILE_ITEMS.map((e) => (
+                {NAVPROFILE_ITEMS.map(({ path, title }) => (
                   <>
                     <li>
                       <button
                         className="btn btn-ghost content-center "
-                        onClick={() => navigate(e.path)}
+                        onClick={() => navigate(path)}
                       >
-                        <p>{e.title}</p>
+                        <p className="font-light">{title}</p>
                       </button>
                     </li>
                   </>

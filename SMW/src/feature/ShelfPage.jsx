@@ -1,5 +1,5 @@
 const ShelfPage = () => {
-  return <div>ShelfPage</div>;
+  return <div></div>;
 };
 
 export default ShelfPage;
