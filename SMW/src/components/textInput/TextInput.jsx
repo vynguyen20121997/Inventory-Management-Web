@@ -15,7 +15,7 @@ const TextInput = ({
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
     setText(inputValue);
-    onTextChange(inputValue);
+    onTextChange ? onTextChange(inputValue) : '';
   };
   return (
     <>
