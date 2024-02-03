@@ -18,7 +18,7 @@ export const NAVBAR_ITEMS = [
 ];
 
 export const NAVPROFILE_ITEMS = [
-  { title: "Profile", path: PATHS.shelfInfo },
-  { title: "Settings", path: PATHS.inventory },
-  { title: "Logout ", path: PATHS.import_history },
+  { title: "Profile", path: PATHS.account },
+  { title: "Settings", path: PATHS.setting },
+  { title: "Logout ", path: PATHS.logout },
 ];

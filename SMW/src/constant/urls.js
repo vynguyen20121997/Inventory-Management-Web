@@ -17,4 +17,6 @@ export const PATHS = {
   export: "export",
   //AccountPage:
   account: "account",
+  setting: "setting",
+  logout: "logout",
 };
