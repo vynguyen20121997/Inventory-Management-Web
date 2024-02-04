@@ -1,45 +1,40 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-
+import { useForm, Controller } from 'react-hook-form';
 const TextInput = ({
   width,
   height,
   backGround,
-  TextLabel,
-  placeHolder,
-  onTextChange,
+  placeHolder = 'Nhập dữ liệu',
+  getValue,
+  textLabel,
 }) => {
-  const [text, setText] = useState('');
-  const customCssInput = `${width} ${height} ${backGround}  `;
-
-  const handleInputChange = (event) => {
-    const inputValue = event.target.value;
-    setText(inputValue);
-    onTextChange ? onTextChange(inputValue) : '';
+  const { control } = useForm();
+  const HandleInputChange = (feild, value) => {
+    feild.onChange(value);
+    getValue(value);
   };
   return (
     <>
-      {TextLabel ? <label htmlFor={TextLabel}> {TextLabel} </label> : ''}
-
-      <input
-        id={TextLabel}
-        placeholder={placeHolder}
-        type="text"
-        className={` ${customCssInput} hover:border-colorMain outline-none transition-all border-2 p-1 border-gray-500 rounded `}
-        value={text}
-        onChange={handleInputChange}
+      <Controller
+        name="TextInput"
+        control={control}
+        defaultValue={''}
+        render={({ field }) => (
+          <>
+            <input
+              id={textLabel}
+              className={` ${width} ${height} ${backGround} hover:border-colorMain focus:border-colorMain outline-none transition-all border-2 p-1 border-gray-500 rounded `}
+              type="text"
+              onChange={(e) => HandleInputChange(field, e.target.value)}
+              value={field.value}
+              name={field.name}
+              ref={field.ref}
+              placeholder={placeHolder}
+            />
+          </>
+        )}
       />
     </>
   );
-};
-
-TextInput.propTypes = {
-  placeHolder: PropTypes.string,
-  TextLabel: PropTypes.string,
-  width: PropTypes.string,
-  height: PropTypes.string,
-  backGround: PropTypes.string,
-  onTextChange: PropTypes.func,
 };
 
 export default TextInput;

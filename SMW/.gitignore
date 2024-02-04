@@ -8,6 +8,9 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+postcss.config
+index.css
+tailwind.config.js
 dist
 dist-ssr
 *.local
