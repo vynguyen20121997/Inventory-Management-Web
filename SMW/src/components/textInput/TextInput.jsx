@@ -1,34 +1,32 @@
 import { useForm, Controller } from 'react-hook-form';
 const TextInput = ({
-  width,
-  height,
-  backGround,
+  name = 'name',
+  backGround = 'white',
   placeHolder = 'Nhập dữ liệu',
-  getValue,
-  textLabel,
+  ...rest
 }) => {
-  const { control } = useForm();
-  const HandleInputChange = (feild, value) => {
-    feild.onChange(value);
-    getValue(value);
-  };
+  const {
+    control,
+    formState: { errors },
+  } = useForm();
+  const hasError = !!errors[name];
   return (
     <>
       <Controller
-        name="TextInput"
+        name={name}
         control={control}
-        defaultValue={''}
         render={({ field }) => (
           <>
             <input
-              id={textLabel}
-              className={` ${width} ${height} ${backGround} hover:border-colorMain focus:border-colorMain outline-none transition-all border-2 p-1 border-gray-500 rounded `}
+              {...field}
+              id={name}
+              className={` ${rest} hover:border-colorMain focus:border-colorMain outline-none transition-all border-[1px] p-1 border-[#E1E1E1] rounded-lg `}
               type="text"
-              onChange={(e) => HandleInputChange(field, e.target.value)}
-              value={field.value}
-              name={field.name}
-              ref={field.ref}
+              onChange={(e) => {
+                field.onChange(e);
+              }}
               placeholder={placeHolder}
+              error={hasError}
             />
           </>
         )}
