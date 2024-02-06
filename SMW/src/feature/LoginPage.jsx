@@ -1,5 +1,5 @@
-import AuthenLayout from "../layouts/AuthenLayout";
-import UserLoginIMG from "../assets/symbols/user-login.png";
+import AuthenLayout from '../layouts/AuthenLayout';
+import UserLoginIMG from '../assets/symbols/user-login.png';
 
 const LoginPage = () => {
   return (
