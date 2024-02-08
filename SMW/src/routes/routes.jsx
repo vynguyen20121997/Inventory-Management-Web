@@ -5,6 +5,7 @@ import LoginPage from "../feature/LoginPage";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import PublicRoute from "./PublicRoute/PublicRoute";
 import ShelfPage from "../feature/ShelfPage";
+import ShelfPageShelf from "../feature/ShelfPageShelf/ShelfPageShelf";
 
 const sentryCreateBrowserRouter = wrapCreateBrowserRouter(createBrowserRouter);
 const router = sentryCreateBrowserRouter([
@@ -16,8 +17,15 @@ const router = sentryCreateBrowserRouter([
     element: <PrivateRoute />,
     children: [
       {
-        path: PATHS.shelfInfo,
+        path: PATHS.shelf,
         element: <ShelfPage />,
+        // handle: {
+        //   roles:
+        // },
+      },
+      {
+        path: PATHS.shelfInfo,
+        element: <ShelfPageShelf />,
         // handle: {
         //   roles:
         // },

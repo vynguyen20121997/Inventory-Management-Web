@@ -9,12 +9,12 @@ export const TOAST_LIMIT = 5;
 export const LIMIT_NOTIFICATIONS = 10;
 
 export const NAVBAR_ITEMS = [
-  { link: "Shelf", path: PATHS.shelfInfo },
-  { link: "Inventory", path: PATHS.inventory },
-  { link: "Import History", path: PATHS.import_history },
-  { link: "Export History", path: PATHS.export_history },
-  { link: "Export", path: PATHS.export },
-  { link: "Account", path: PATHS.account },
+  { title: "Shelf", path: PATHS.shelf },
+  { title: "Inventory", path: PATHS.inventory },
+  { title: "Import History", path: PATHS.import_history },
+  { title: "Export History", path: PATHS.export_history },
+  { title: "Export", path: PATHS.export },
+  { title: "Account", path: PATHS.account },
 ];
 
 export const NAVPROFILE_ITEMS = [
