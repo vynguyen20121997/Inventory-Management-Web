@@ -1,12 +1,13 @@
-import { Outlet, useNavigate } from "react-router-dom";
-import LogoIcon from "../assets/logo.svg";
-import UserIcon from "../assets/user-circle.svg";
-import { NAVBAR_ITEMS, NAVPROFILE_ITEMS } from "../constant/constants";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { NAVBAR_ITEMS, NAVPROFILE_ITEMS } from "../../constant/constants";
+import LogoIcon from "/src/assets/logo.svg";
+import UserIcon from "/src/assets/user-circle.svg";
 
 // eslint-disable-next-line react/prop-types
 const NavBar = ({ children }) => {
   const navigate = useNavigate();
-
+  const params = useParams();
+  console.log("params: ", params);
   return (
     <>
       <div className=" grid  grid-rows-10 grid-cols-10  h-screen bg-gray-100  text-black">
@@ -14,25 +15,34 @@ const NavBar = ({ children }) => {
           <div className="flex justify-center py-5">
             <img src={LogoIcon} alt="logo" />
           </div>
-          <div className="mx-auto px-1">
-            {NAVBAR_ITEMS.map(({ path, link }) => (
+          <ul className=" menu mx-auto px-2 ">
+            {NAVBAR_ITEMS.map(({ path, title }) => (
               <>
-                <div className="">
-                  <button
-                    onClick={() => navigate(path)}
-                    className="tooltip btn btn-ghost w-full text-left "
-                    data-tip={link}
-                  >
-                    <p className="font-normal">{link}</p>
-                  </button>
-                </div>
+                <li
+                  onClick={() => navigate(path)}
+                  className="tooltip w-full"
+                  data-tip={title}
+                >
+                  <p className="font-normal text-2xl text-left align-middle">
+                    {title}
+                  </p>
+                  {title === "Shelf" && params.id !== undefined && (
+                    <ul className="bg-[#B5DCFD] rounded-md ml-0 pl-6 ">
+                      <li>
+                        <p className="font-normal text-2xl ">
+                          Shelf {params.id}
+                        </p>
+                      </li>
+                    </ul>
+                  )}
+                </li>
               </>
             ))}
-          </div>
+          </ul>
         </div>
-        <div className=" flex-none row-span-1 col-span-9 navbar bg-white justify-between ">
+        <div className=" flex-none row-span-1 col-span-9 navbar bg-white justify-between px-5">
           <div>
-            <p className="text-xl font-normal    ">Welcome! Black Adam</p>
+            <p className="text-3xl font-normal    ">Welcome! Black Adam</p>
           </div>
           <div>
             <div className="dropdown dropdown-end">
@@ -65,7 +75,7 @@ const NavBar = ({ children }) => {
             </div>
           </div>
         </div>
-        <div className="row-span-9 col-span-9 p-5">
+        <div className="row-span-9 col-span-9 grid grid-rows-12">
           {children && <Outlet />}
         </div>
       </div>

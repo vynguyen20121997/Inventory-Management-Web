@@ -7,7 +7,7 @@ import {
 // eslint-disable-next-line react/prop-types
 const DataTable = ({ columns, dataTable }) => {
   const table = useReactTable({
-    columns: columns,
+    columns,
     data: dataTable,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -16,13 +16,16 @@ const DataTable = ({ columns, dataTable }) => {
     <div className="overflow-x-auto">
       <table className="table">
         <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id} className="border-none text-[#676767]">
+          {table?.getHeaderGroups()?.map((headerGroup) => (
+            <tr
+              key={headerGroup.id}
+              className="border-none text-[#676767] text-xl"
+            >
               {headerGroup.headers.map((header) => (
                 <th key={header.id} className="font-normal">
                   {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext()
+                    header?.column?.columnDef?.header,
+                    header?.getContext()
                   )}
                 </th>
               ))}
@@ -30,12 +33,12 @@ const DataTable = ({ columns, dataTable }) => {
           ))}
         </thead>
         <tbody>
-          {table.getRowModel().rows.length > 0 &&
+          {table?.getRowModel()?.rows.length > 0 &&
             table.getRowModel().rows.map((row) => (
               <tr className="border-none " key={row.id}>
                 {row.getVisibleCells().map((cell) => {
                   return (
-                    <th key={cell.id} className="font-normal">
+                    <th key={cell.id} className="font-normal text-xl">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

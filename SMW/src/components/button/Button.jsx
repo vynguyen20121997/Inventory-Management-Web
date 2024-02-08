@@ -1,11 +1,19 @@
+/* eslint-disable react/prop-types */
 const Button = (props) => {
-  const { title, onHandleClick, height, width, backGround } = props;
+  const {
+    title,
+    HandleClick,
+    height = "h-[46px]",
+    width = "w-[149px]",
+    backGround = "bg-colorMain",
+    textSize,
+  } = props;
   return (
     <>
       <button
-        className={`${height ?? 'h-[46px]'} ${width ?? 'w-[149px]'} ${backGround ?? 'bg-colorMain'} rounded-[10px] text-textColorMain `}
+        className={`${height} ${width} ${backGround} ${textSize} rounded-[10px] text-textColorMain `}
         type="button"
-        onClick={onHandleClick}
+        onClick={HandleClick}
       >
         {title}
       </button>

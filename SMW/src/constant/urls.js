@@ -5,7 +5,8 @@ export const PATHS = {
   login: "sign-in",
 
   //ShelfPage:
-  shelfInfo: "shelf-info",
+  shelf: "shelf",
+  shelfInfo: "shelf/:id",
 
   //InventoryPage:
   inventory: "inventory",

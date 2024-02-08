@@ -1,4 +1,4 @@
-export const dataTable = [
+export const dataTableInventory = [
   {
     no: 1,
     name: "Tanner",
@@ -9,6 +9,18 @@ export const dataTable = [
     balance: 9999,
     price: 1222,
     total: 1231,
+  },
+];
+
+export const dataTableShelf = [
+  {
+    no: 1,
+    name: "Tanner",
+    shelf: "Linsley",
+    unit: 33,
+    quantity: 100,
+    balance: 9999,
+    price: 1222,
   },
 ];
 
