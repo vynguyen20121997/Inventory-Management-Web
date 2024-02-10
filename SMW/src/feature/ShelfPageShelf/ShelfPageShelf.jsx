@@ -24,6 +24,12 @@ const ShelfPageShelf = () => {
     handleClose: handleCloseEditDialog,
   } = useToogleDialog(false);
 
+  const {
+    open: openDeleteDialog,
+    handleOpen: handleOpenDeleteDialog,
+    handleClose: handleCloseDeleteDialog,
+  } = useToogleDialog(false);
+
   const handleClickOpenAdd = useCallback(() => {
     handleOpenAddDialog();
   }, [handleOpenAddDialog]);
@@ -58,6 +64,9 @@ const ShelfPageShelf = () => {
         onClose={handleCloseEditDialog}
         onSubmit={() => {}}
         data={dataTableShelf[0]}
+        openDeleteDialog={openDeleteDialog}
+        handleOpenDeleteDialog={handleOpenDeleteDialog}
+        handleCloseDeleteDialog={handleCloseDeleteDialog}
       />
     </>
   );
