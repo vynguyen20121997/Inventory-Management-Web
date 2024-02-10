@@ -1,11 +1,11 @@
-import DataTable from "../../components/dataTable/DataTable";
+import DataTable from '../../components/dataTable/DataTable';
 import {
   TableContainer,
   SearchBarContainer,
-} from "../../components/pageContainer";
-import { dataTableShelf } from "../../tests/dataTable";
-import SearchBarShelfPageShelf from "./components/SearchBarShelfPageShelf";
-import ShelfPageShelfColumns from "./hooks/ShelfPageShelfColumns";
+} from '../../components/pageContainer';
+import { dataTableShelf } from '../../tests/dataTable';
+import SearchBarShelfPageShelf from './components/SearchBarShelfPageShelf';
+import ShelfPageShelfColumns from './hooks/ShelfPageShelfColumns';
 
 const ShelfPageShelf = () => {
   const columns = ShelfPageShelfColumns({

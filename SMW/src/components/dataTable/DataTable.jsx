@@ -1,17 +1,29 @@
 import {
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
   useReactTable,
-} from "@tanstack/react-table";
-
+} from '@tanstack/react-table';
+import { useState } from 'react';
+import PaginationComponents from '../pagination/PaginationComponents';
 // eslint-disable-next-line react/prop-types
 const DataTable = ({ columns, dataTable }) => {
+  const [pageState, setPageState] = useState(0);
+  const onHandlePageChange = (value) => {
+    setPageState(value);
+  };
   const table = useReactTable({
     columns,
     data: dataTable,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    state: {
+      pagination: {
+        pageIndex: pageState,
+        pageSize: 1,
+      },
+    },
   });
-
   return (
     <div className="overflow-x-auto">
       <table className="table">
@@ -50,6 +62,16 @@ const DataTable = ({ columns, dataTable }) => {
             ))}
         </tbody>
       </table>
+      {/* pagination example  */}
+      <div>
+        <PaginationComponents
+          total={dataTable}
+          pageSize={table?.getState()?.pagination?.pageSize}
+          onPageChange={onHandlePageChange}
+          currentPage={table?.getState()?.pagination?.pageIndex + 1}
+          pageIndex={table?.getState()?.pagination?.pageIndex}
+        />
+      </div>
     </div>
   );
 };
