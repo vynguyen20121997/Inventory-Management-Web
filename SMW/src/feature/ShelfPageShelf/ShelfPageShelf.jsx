@@ -8,6 +8,8 @@ import useToogleDialog from "../../hooks/useToogleDialog/useToogleDialog";
 import SearchBarShelfPageShelf from "./components/SearchBarShelfPageShelf";
 import ShelfPageShelfColumns from "./hooks/ShelfPageShelfColumns";
 import AddDialogShelfPageShelf from "./components/AddDialogShelfPageShelf";
+import { dataTableShelf } from "../../tests/dataTable";
+import EditDialogShelfPageShelf from "./components/EditDialogShelfPageShelf";
 
 const ShelfPageShelf = () => {
   const {
@@ -16,15 +18,24 @@ const ShelfPageShelf = () => {
     handleClose: handleCloseAddDialog,
   } = useToogleDialog(false);
 
+  const {
+    open: openEditDialog,
+    handleOpen: handleOpenEditDialog,
+    handleClose: handleCloseEditDialog,
+  } = useToogleDialog(false);
+
   const handleClickOpenAdd = useCallback(() => {
     handleOpenAddDialog();
   }, [handleOpenAddDialog]);
 
+  const handleClickOpenEdit = useCallback(() => {
+    handleOpenEditDialog();
+  }, [handleOpenEditDialog]);
+
   const columns = ShelfPageShelfColumns({
-    onEdit: () => {},
+    onEdit: handleClickOpenEdit,
     onDelete: () => {},
   });
-  console.log("openAddDialog", openAddDialog);
 
   return (
     <>
@@ -33,13 +44,20 @@ const ShelfPageShelf = () => {
       </SearchBarContainer>
 
       <TableContainer>
-        <DataTable columns={columns} dataTable={[]} />
+        <DataTable columns={columns} dataTable={dataTableShelf} />
       </TableContainer>
 
       <AddDialogShelfPageShelf
         open={openAddDialog}
         onClose={handleCloseAddDialog}
         onSubmit={() => {}}
+      />
+
+      <EditDialogShelfPageShelf
+        open={openEditDialog}
+        onClose={handleCloseEditDialog}
+        onSubmit={() => {}}
+        data={dataTableShelf[0]}
       />
     </>
   );

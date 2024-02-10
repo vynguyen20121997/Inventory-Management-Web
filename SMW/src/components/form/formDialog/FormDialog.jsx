@@ -44,7 +44,7 @@ const FormDialog = ({
   return (
     <Suspense fallback={<GlobalLoading />}>
       <dialog className="modal " ref={dialogRef}>
-        <div className="modal-box rounded-md bg-[#FFFFFF] w-[517px] h-[559px]">
+        <div className="modal-box rounded-md bg-[#FFFFFF] w-[517px] min-h-[559px] max-h-lvh">
           {" "}
           <FormProvider {...methods} onSubmit={onSubmit}>
             <form method={methods} onSubmit={onSubmit}>

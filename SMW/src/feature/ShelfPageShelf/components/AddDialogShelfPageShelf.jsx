@@ -13,7 +13,11 @@ const AddDialogShelfPageShelf = ({ open, isLoading, onSubmit, onClose }) => {
     defaultValues: SHELF_ITEM_DEFAULT_VALUES,
   });
 
-  // const { handleSubmit } = methods;
+  const { handleSubmit } = methods;
+
+  const handleFormSubmit = handleSubmit((data) => {
+    onSubmit(data);
+  });
 
   return (
     <FormDialog
@@ -21,7 +25,7 @@ const AddDialogShelfPageShelf = ({ open, isLoading, onSubmit, onClose }) => {
       open={open}
       isLoading={isLoading}
       methods={methods}
-      onSubmit={onSubmit}
+      onSubmit={handleFormSubmit}
       onClose={onClose}
     >
       <div className="grid  grid-cols-5  grid-rows-5 gap-3 items-center">
