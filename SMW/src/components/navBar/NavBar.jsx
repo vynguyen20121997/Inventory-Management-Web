@@ -7,7 +7,6 @@ import UserIcon from "/src/assets/user-circle.svg";
 const NavBar = ({ children }) => {
   const navigate = useNavigate();
   const params = useParams();
-  console.log("params: ", params);
   return (
     <>
       <div className=" grid  grid-rows-10 grid-cols-10  h-screen bg-gray-100  text-black">

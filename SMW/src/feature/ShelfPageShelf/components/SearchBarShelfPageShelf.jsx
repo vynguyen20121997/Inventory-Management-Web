@@ -1,7 +1,9 @@
 import Button from '../../../components/button/Button';
 import TextInputWithSearchIcon from '../../../components/form/TextInputWithIcon';
 import ExportIcon from '/src/assets/export-icon.svg';
-const SearchBarShelfPageShelf = () => {
+
+// eslint-disable-next-line react/prop-types
+const SearchBarShelfPageShelf = ({ handleClickOpenAdd }) => {
   return (
     <div className="flex justify-between">
       <div>
@@ -9,7 +11,7 @@ const SearchBarShelfPageShelf = () => {
       </div>
       <div className="flex w-64 pr-11 justify-between">
         <Button
-          className=""
+          HandleClick={handleClickOpenAdd}
           title="Add Item"
           height="h-[50px]"
           width="w-[132px]"
