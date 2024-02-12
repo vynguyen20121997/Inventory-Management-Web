@@ -1,11 +1,11 @@
-import { wrapCreateBrowserRouter } from "@sentry/react";
-import { createBrowserRouter } from "react-router-dom";
-import { PATHS } from "../constant/urls";
-import LoginPage from "../feature/LoginPage";
-import PrivateRoute from "./PrivateRoute/PrivateRoute";
-import PublicRoute from "./PublicRoute/PublicRoute";
-import ShelfPage from "../feature/ShelfPage";
-import ShelfPageShelf from "../feature/ShelfPageShelf/ShelfPageShelf";
+import { wrapCreateBrowserRouter } from '@sentry/react';
+import { createBrowserRouter } from 'react-router-dom';
+import { PATHS } from '../constant/urls';
+import LoginPage from '../feature/LoginPage';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import PublicRoute from './PublicRoute/PublicRoute';
+import ShelfPageShelf from '../feature/ShelfPageShelf/ShelfPageShelf';
+import ShelfPage from '../feature/ShelfPage/ShelfPage';
 
 const sentryCreateBrowserRouter = wrapCreateBrowserRouter(createBrowserRouter);
 const router = sentryCreateBrowserRouter([
