@@ -4,15 +4,7 @@ import Button from "../../button/Button";
 import { FormProvider } from "react-hook-form";
 import GlobalLoading from "../../globalLoading/GlobalLoading";
 
-const FormDialog = ({
-  children,
-  open,
-  isLoading,
-  onSubmit,
-  methods,
-  onClose,
-  title,
-}) => {
+const FormDialog = ({ children, open, onSubmit, methods, onClose, title }) => {
   const { reset } = methods;
 
   useEffect(() => {

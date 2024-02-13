@@ -28,16 +28,14 @@ const Select = ({
               {...field}
               className={`select bg-white outline-none border-[1px] border-[#E1E1E1]  focus:outline-none focus:ring-0 rounded-[10px] text-xl ${style}`}
             >
-              <option disabled selected>
-                {placeholder}
-              </option>
+              <option disabled>{placeholder}</option>
               {options?.map((op) => (
                 <>
                   <option>{op.title}</option>
                 </>
               ))}
             </select>
-          </label>{" "}
+          </label>
         </>
       )}
     />
