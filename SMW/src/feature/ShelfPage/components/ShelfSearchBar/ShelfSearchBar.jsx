@@ -14,12 +14,26 @@ const ShelfSearchBar = ({ onCloseShelf, closeShelf }) => {
         <div className="mr-[19px]">
           {' '}
           <span className="mr-[19px] hover:opacity-80 transition-all ">
+            {closeShelf ? (
+              <Button
+                title={'Cancel'}
+                width={'w-[132px]'}
+                height={'h-[50px]'}
+                backGround={'bg-[#EFDDDD]'}
+                textColor={'text-[#FF0000]'}
+                HandleClick={() => onCloseShelf(false)}
+              />
+            ) : (
+              ''
+            )}
+          </span>
+          <span className="mr-[19px] hover:opacity-80 transition-all ">
             <Button
               title={'Delete Shelf'}
               width={'w-[132px]'}
               height={'h-[50px]'}
               backGround={'bg-[#9F9F9F]'}
-              HandleClick={() => onCloseShelf(!closeShelf)}
+              HandleClick={() => onCloseShelf(true)}
             />
           </span>
           <span className="hover:opacity-80 transition-all">
