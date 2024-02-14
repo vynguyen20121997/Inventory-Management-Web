@@ -1,31 +1,30 @@
 import { wrapCreateBrowserRouter } from "@sentry/react";
 import { createBrowserRouter } from "react-router-dom";
 import { PATHS } from "../constant/urls";
-import LoginPage from "../feature/LoginPage";
+import ImportHistoryPage from "../feature/ImportHistoryPage/ImportHistoryPage";
+import ShelfPageShelf from "../feature/ShelfPageShelf/ShelfPageShelf";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import PublicRoute from "./PublicRoute/PublicRoute";
-import ShelfPage from "../feature/ShelfPage";
-import ShelfPageShelf from "../feature/ShelfPageShelf/ShelfPageShelf";
 
 const sentryCreateBrowserRouter = wrapCreateBrowserRouter(createBrowserRouter);
 const router = sentryCreateBrowserRouter([
   {
     element: <PublicRoute />,
-    children: [{ path: PATHS.home, element: <LoginPage /> }],
+    // children: [{ path: PATHS.home, element: <LoginPage /> }],
   },
   {
     element: <PrivateRoute />,
     children: [
       {
-        path: PATHS.shelf,
-        element: <ShelfPage />,
+        path: PATHS.shelfInfo,
+        element: <ShelfPageShelf />,
         // handle: {
         //   roles:
         // },
       },
       {
-        path: PATHS.shelfInfo,
-        element: <ShelfPageShelf />,
+        path: PATHS.import_history,
+        element: <ImportHistoryPage />,
         // handle: {
         //   roles:
         // },
