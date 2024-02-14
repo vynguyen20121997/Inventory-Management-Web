@@ -1,0 +1,1 @@
+export const INVENTORY_PAGE_DATA_LIMIT = 8;

@@ -71,8 +71,8 @@ const DataTable = ({
         </div>
         <div className="row-span-1 justify-self-center">
           <TablePagination
-            pageIndex={pageIndex}
-            total={total}
+            pageIndex={pageIndex || 0}
+            total={total || 0}
             onPageChange={(page) => {
               table.setPageIndex(page);
               onPageChange({ pageIndex: page });

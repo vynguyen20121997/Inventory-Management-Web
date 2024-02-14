@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import { NAVBAR_ITEMS, NAVPROFILE_ITEMS } from "../../constant/constants";
 import LogoIcon from "/src/assets/logo.svg";
 import UserIcon from "/src/assets/user-circle.svg";
@@ -7,6 +7,8 @@ import UserIcon from "/src/assets/user-circle.svg";
 const NavBar = ({ children }) => {
   const navigate = useNavigate();
   const params = useParams();
+  const location = useLocation();
+
   return (
     <>
       <div className=" grid  grid-rows-10 grid-cols-10  h-screen bg-gray-100  text-black">
@@ -14,12 +16,12 @@ const NavBar = ({ children }) => {
           <div className="flex justify-center py-5">
             <img src={LogoIcon} alt="logo" />
           </div>
-          <ul className=" menu mx-auto px-2 ">
+          <ul className=" menu mx-auto px-2  ">
             {NAVBAR_ITEMS.map(({ path, title }) => (
               <>
                 <li
                   onClick={() => navigate(path)}
-                  className="tooltip w-full"
+                  className={`tooltip w-full ${location.pathname === `/${path}` ? "bg-[#B5DCFD]" : "bg-transparent"} rounded-md`}
                   data-tip={title}
                 >
                   <p className="font-normal text-2xl text-left align-middle">
