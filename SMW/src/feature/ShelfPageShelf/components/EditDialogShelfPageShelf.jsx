@@ -59,7 +59,7 @@ const EditDialogShelfPageShelf = ({
           <p className="col-span-1">Edit</p>
           <NumberInput name="quantity" style="w-[47px] h-[58px]  col-span-4" />
           <p className="col-span-1">Delete</p>
-          <div className="col-span-4">
+          <div className="col-span-4 cursor-pointer	">
             <img onClick={handleOpenDeleteDialog} src={DeleteIcon} alt="" />
           </div>
         </div>

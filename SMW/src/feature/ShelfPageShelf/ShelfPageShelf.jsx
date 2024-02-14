@@ -10,8 +10,12 @@ import ShelfPageShelfColumns from "./hooks/ShelfPageShelfColumns";
 import AddDialogShelfPageShelf from "./components/AddDialogShelfPageShelf";
 import { dataTableShelf } from "../../tests/dataTable";
 import EditDialogShelfPageShelf from "./components/EditDialogShelfPageShelf";
+import { SHELF_ITEM_LIMIT } from "./constants/constants";
+import { useSearchParams } from "react-router-dom";
 
 const ShelfPageShelf = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const {
     open: openAddDialog,
     handleOpen: handleOpenAddDialog,
@@ -43,6 +47,10 @@ const ShelfPageShelf = () => {
     onDelete: () => {},
   });
 
+  const handlePageChange = ({ pageIndex }) => {
+    setSearchParams({ page: pageIndex });
+  };
+
   return (
     <>
       <SearchBarContainer>
@@ -50,7 +58,14 @@ const ShelfPageShelf = () => {
       </SearchBarContainer>
 
       <TableContainer>
-        <DataTable columns={columns} dataTable={dataTableShelf} />
+        <DataTable
+          columns={columns}
+          dataTable={Array(SHELF_ITEM_LIMIT).fill(dataTableShelf.data[0])}
+          total={dataTableShelf.total}
+          pageIndex={searchParams.get("page") - 1}
+          pageSize={SHELF_ITEM_LIMIT}
+          onPageChange={handlePageChange}
+        />
       </TableContainer>
 
       <AddDialogShelfPageShelf
@@ -63,7 +78,7 @@ const ShelfPageShelf = () => {
         open={openEditDialog}
         onClose={handleCloseEditDialog}
         onSubmit={() => {}}
-        data={dataTableShelf[0]}
+        data={dataTableShelf.data[0]}
         openDeleteDialog={openDeleteDialog}
         handleOpenDeleteDialog={handleOpenDeleteDialog}
         handleCloseDeleteDialog={handleCloseDeleteDialog}
