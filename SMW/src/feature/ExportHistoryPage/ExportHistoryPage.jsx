@@ -4,15 +4,18 @@ import {
   SearchBarContainer,
   TableContainer,
 } from "../../components/pageContainer";
-import { dataTableImportHistory } from "../../tests/dataTable";
-import SearchBarImportHistoryPage from "./components/SearchBarImportHistoryPage";
-import { IMPORT_HISTORY_PAGE_DATA_LIMIT } from "./constants/constants";
-import ImportHistoryPageColumns from "./hooks/ImportHistoryPageColumns";
+import {
+  dataTableExportHistory,
+  dataTableImportHistory,
+} from "../../tests/dataTable";
+import SearchBarExportHistoryPage from "./components/SearchBarExportHistoryPage";
+import { EXPORT_PAGE_DATA_LIMIT } from "./constants/constants";
+import ExportHistoryPageColumns from "./hooks/ExportHistoryPageColumns";
 
-const ImportHistoryPage = () => {
+const ExportHistoryPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const columns = ImportHistoryPageColumns();
+  const columns = ExportHistoryPageColumns();
 
   const handlePageChange = ({ pageIndex }) => {
     setSearchParams({ page: pageIndex });
@@ -21,23 +24,23 @@ const ImportHistoryPage = () => {
   return (
     <>
       <SearchBarContainer>
-        <SearchBarImportHistoryPage />
+        <SearchBarExportHistoryPage />
       </SearchBarContainer>
 
       <TableContainer>
         <DataTable
           columns={columns}
-          dataTable={Array(IMPORT_HISTORY_PAGE_DATA_LIMIT).fill(
-            dataTableImportHistory.data[0]
+          dataTable={Array(EXPORT_PAGE_DATA_LIMIT).fill(
+            dataTableExportHistory.data[0]
           )}
           total={dataTableImportHistory.total}
           onPageChange={handlePageChange}
           pageIndex={searchParams.get("page") - 1}
-          pageSize={IMPORT_HISTORY_PAGE_DATA_LIMIT}
+          pageSize={EXPORT_PAGE_DATA_LIMIT}
         />
       </TableContainer>
     </>
   );
 };
 
-export default ImportHistoryPage;
+export default ExportHistoryPage;

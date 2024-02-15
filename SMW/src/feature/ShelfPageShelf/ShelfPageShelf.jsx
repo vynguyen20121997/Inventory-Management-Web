@@ -5,13 +5,15 @@ import {
   SearchBarContainer,
 } from "../../components/pageContainer";
 import useToogleDialog from "../../hooks/useToogleDialog/useToogleDialog";
-import SearchBarShelfPageShelf from "./components/SearchBarShelfPageShelf";
 import ShelfPageShelfColumns from "./hooks/ShelfPageShelfColumns";
-import AddDialogShelfPageShelf from "./components/AddDialogShelfPageShelf";
 import { dataTableShelf } from "../../tests/dataTable";
-import EditDialogShelfPageShelf from "./components/EditDialogShelfPageShelf";
 import { SHELF_ITEM_LIMIT } from "./constants/constants";
 import { useSearchParams } from "react-router-dom";
+import {
+  AddDialogShelfPageShelf,
+  EditDialogShelfPageShelf,
+  SearchBarShelfPageShelf,
+} from "./components";
 
 const ShelfPageShelf = () => {
   const [searchParams, setSearchParams] = useSearchParams();
