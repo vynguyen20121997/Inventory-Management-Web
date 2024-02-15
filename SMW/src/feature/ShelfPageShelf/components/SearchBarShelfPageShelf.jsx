@@ -1,6 +1,6 @@
-import Button from '../../../components/button/Button';
-import TextInputWithSearchIcon from '../../../components/form/TextInputWithIcon';
-import ExportIcon from '/src/assets/export-icon.svg';
+import Button from "../../../components/button/Button";
+import TextInputWithSearchIcon from "../../../components/form/TextInputWithIcon";
+import ExportIcon from "/src/assets/export-icon.svg";
 
 // eslint-disable-next-line react/prop-types
 const SearchBarShelfPageShelf = ({ handleClickOpenAdd }) => {
@@ -17,7 +17,7 @@ const SearchBarShelfPageShelf = ({ handleClickOpenAdd }) => {
           width="w-[132px]"
           textSize="text-xl"
         />
-        <img src={ExportIcon} alt="" />
+        <img src={ExportIcon} alt="export" />
       </div>
     </div>
   );

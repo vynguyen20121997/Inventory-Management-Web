@@ -6,6 +6,7 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import PublicRoute from "./PublicRoute/PublicRoute";
 import ImportHistoryPage from "../feature/ImportHistoryPage/ImportHistoryPage";
 import ExportHistoryPage from "../feature/ExportHistoryPage/ExportHistoryPage";
+import ExportPage from "../feature/ExportPage/ExportPage";
 
 const sentryCreateBrowserRouter = wrapCreateBrowserRouter(createBrowserRouter);
 const router = sentryCreateBrowserRouter([
@@ -33,6 +34,13 @@ const router = sentryCreateBrowserRouter([
       {
         path: PATHS.export_history,
         element: <ExportHistoryPage />,
+        // handle: {
+        //   roles:
+        // },
+      },
+      {
+        path: PATHS.export,
+        element: <ExportPage />,
         // handle: {
         //   roles:
         // },
