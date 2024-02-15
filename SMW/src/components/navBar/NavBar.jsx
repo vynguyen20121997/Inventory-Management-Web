@@ -13,8 +13,12 @@ const NavBar = ({ children }) => {
     <>
       <div className=" grid  grid-rows-10 grid-cols-10  h-screen bg-gray-100  text-black">
         <div className="flex-col row-span-10 col-span-1  bg-white ">
-          <div className="flex justify-center py-5">
-            <img src={LogoIcon} alt="logo" />
+          <div className=" h-24 py-4  ">
+            <div className="flex justify-center  ">
+              <img src={LogoIcon} alt="logo" />
+            </div>
+
+            <div className="h-[1px] w-full bg-[#F2F2F2] mt-[9.6px]" />
           </div>
           <ul className=" menu mx-auto px-2  ">
             {NAVBAR_ITEMS.map(({ path, title }) => (
@@ -41,40 +45,43 @@ const NavBar = ({ children }) => {
             ))}
           </ul>
         </div>
-        <div className=" flex-none row-span-1 col-span-9 navbar bg-white justify-between px-5">
-          <div>
-            <p className="text-3xl font-normal    ">Welcome! Black Adam</p>
-          </div>
-          <div>
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 rounded-full">
-                  <img src={UserIcon} alt="logo" />
+        <div className="  row-span-1 col-span-9  bg-white">
+          <div className=" justify-between navbar px-5">
+            <div>
+              <p className="text-3xl font-normal    ">Welcome! Black Adam</p>
+            </div>
+            <div>
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full">
+                    <img src={UserIcon} alt="logo" />
+                  </div>
                 </div>
+                <ul
+                  tabIndex={0}
+                  className=" z-[1] shadow menu menu-sm dropdown-content bg-white rounded-box "
+                >
+                  {NAVPROFILE_ITEMS.map(({ path, title }) => (
+                    <>
+                      <li>
+                        <button
+                          className="btn btn-ghost content-center "
+                          onClick={() => navigate(path)}
+                        >
+                          <p className="font-light">{title}</p>
+                        </button>
+                      </li>
+                    </>
+                  ))}
+                </ul>
               </div>
-              <ul
-                tabIndex={0}
-                className=" z-[1] shadow menu menu-sm dropdown-content bg-white rounded-box "
-              >
-                {NAVPROFILE_ITEMS.map(({ path, title }) => (
-                  <>
-                    <li>
-                      <button
-                        className="btn btn-ghost content-center "
-                        onClick={() => navigate(path)}
-                      >
-                        <p className="font-light">{title}</p>
-                      </button>
-                    </li>
-                  </>
-                ))}
-              </ul>
             </div>
           </div>
+          <div className="h-[1px] w-full bg-[#F2F2F2] mt-2" />
         </div>
         <div className="row-span-9 col-span-9 grid grid-rows-12">
           {children && <Outlet />}
