@@ -66,3 +66,19 @@ export const dataTableExportHistory = {
   limit: 20,
   total: 3,
 };
+
+export const dataTableExport = {
+  data: [
+    {
+      no: 1,
+      name: "Tanner",
+      unit: 33,
+      quantity: 100,
+      price: 1222,
+      total: 122223,
+    },
+  ],
+  page: 1,
+  limit: 20,
+  total: 3,
+};
