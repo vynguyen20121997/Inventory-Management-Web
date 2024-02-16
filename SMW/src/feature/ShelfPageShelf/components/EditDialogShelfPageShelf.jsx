@@ -48,8 +48,9 @@ const EditDialogShelfPageShelf = ({
         methods={methods}
         onSubmit={handleOpenEditQuantityDialog}
         onClose={onClose}
+        containerCss=" w-[517px] h-[559px]"
       >
-        <div className="grid  grid-cols-5  grid-rows-5 gap-2 items-center">
+        <div className="grid  grid-cols-5  grid-rows-5 gap-2 items-center  mb-14">
           <p className="col-span-1">Name</p>{" "}
           <p className="col-span-4">{data.name}</p>
           <p className="col-span-1">Shelf</p>{" "}

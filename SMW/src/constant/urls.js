@@ -16,6 +16,7 @@ export const PATHS = {
   export_history: "export-history",
   //ExportPage:
   export: "export",
+  export_template: "export/:id",
   //AccountPage:
   account: "account",
   setting: "setting",

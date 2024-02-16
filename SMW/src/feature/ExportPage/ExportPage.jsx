@@ -8,9 +8,17 @@ import SearchBarExportPage from "./components/SearchBarExportPage";
 import { EXPORT_PAGE_DATA_LIMIT } from "./constants/constants";
 import { dataTableExport } from "../../tests/dataTable";
 import ExportPageColumns from "./hooks/ExportPageColumns";
+import EditTemplateExportPage from "./components/EditTemplateExportPage";
+import useToogleDialog from "../../hooks/useToogleDialog/useToogleDialog";
 
 const ExportPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const {
+    open: openEditTemplateDialog,
+    handleOpen: handleOpenEditTemplateDialog,
+    handleClose: handleCloseEditTemplateDialog,
+  } = useToogleDialog(false);
 
   const handlePageChange = ({ pageIndex }) => {
     setSearchParams({ page: pageIndex });
@@ -20,7 +28,9 @@ const ExportPage = () => {
   return (
     <>
       <SearchBarContainer>
-        <SearchBarExportPage />
+        <SearchBarExportPage
+          handleClickOpenEditTemplate={handleOpenEditTemplateDialog}
+        />
       </SearchBarContainer>
 
       <TableContainer>
@@ -35,6 +45,12 @@ const ExportPage = () => {
           pageSize={EXPORT_PAGE_DATA_LIMIT}
         />
       </TableContainer>
+
+      <EditTemplateExportPage
+        open={openEditTemplateDialog}
+        onClose={handleCloseEditTemplateDialog}
+        onSubmit={() => {}}
+      />
     </>
   );
 };

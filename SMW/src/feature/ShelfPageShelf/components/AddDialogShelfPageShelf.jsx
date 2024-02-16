@@ -27,8 +27,9 @@ const AddDialogShelfPageShelf = ({ open, isLoading, onSubmit, onClose }) => {
       methods={methods}
       onSubmit={handleFormSubmit}
       onClose={onClose}
+      containerCss=" w-[517px] h-[559px] "
     >
-      <div className="grid  grid-cols-5  grid-rows-5 gap-3 items-center">
+      <div className="grid  grid-cols-5  grid-rows-5 gap-3 items-center mb-20">
         <p className="col-span-1">Name</p>{" "}
         <div className="col-span-4">
           <Select name="itemName" style="w-[376px] h-[47px] " />

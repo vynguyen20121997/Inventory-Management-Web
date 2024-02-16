@@ -8,6 +8,7 @@ const NavBar = ({ children }) => {
   const navigate = useNavigate();
   const params = useParams();
   const location = useLocation();
+  const parentRoute = location.pathname.split("/")[1];
 
   return (
     <>
@@ -25,21 +26,33 @@ const NavBar = ({ children }) => {
               <>
                 <li
                   onClick={() => navigate(path)}
-                  className={`tooltip w-full ${location.pathname === `/${path}` ? "bg-[#B5DCFD]" : "bg-transparent"} rounded-md`}
+                  className={`tooltip w-full ${parentRoute === `${path}` && params.id === undefined ? "bg-[#B5DCFD]" : "bg-transparent"} rounded-md`}
                   data-tip={title}
                 >
-                  <p className="font-normal text-2xl text-left align-middle">
-                    {title}
-                  </p>
-                  {title === "Shelf" && params.id !== undefined && (
+                  {path === parentRoute && path === "export" ? (
+                    <p className="font-normal text-2xl text-left align-middle">
+                      {title}
+                      <div className="badge w-[30px] h-[30px] bg-[#008AFF] border-none text-white rounded-full">
+                        +99
+                      </div>
+                    </p>
+                  ) : (
+                    <p className="font-normal text-2xl text-left align-middle">
+                      {title}
+                    </p>
+                  )}
+
+                  {path === parentRoute && params.id !== undefined ? (
                     <ul className="bg-[#B5DCFD] rounded-md ml-0 pl-6 ">
                       <li>
                         <p className="font-normal text-2xl ">
-                          Shelf {params.id}
+                          {path === "export"
+                            ? `${params.id}`
+                            : `${title} ${params.id}`}
                         </p>
                       </li>
                     </ul>
-                  )}
+                  ) : null}
                 </li>
               </>
             ))}

@@ -4,7 +4,15 @@ import Button from "../../button/Button";
 import { FormProvider } from "react-hook-form";
 import GlobalLoading from "../../globalLoading/GlobalLoading";
 
-const FormDialog = ({ children, open, onSubmit, methods, onClose, title }) => {
+const FormDialog = ({
+  children,
+  open,
+  onSubmit,
+  methods,
+  onClose,
+  title,
+  containerCss,
+}) => {
   const { reset } = methods;
 
   useEffect(() => {
@@ -36,18 +44,14 @@ const FormDialog = ({ children, open, onSubmit, methods, onClose, title }) => {
   return (
     <Suspense fallback={<GlobalLoading />}>
       <dialog className="modal " ref={dialogRef}>
-        <div className="modal-box rounded-md bg-[#FFFFFF] w-[517px] min-h-[559px] max-h-lvh">
-          {" "}
+        <div className={`modal-box rounded-md bg-[#FFFFFF]  ${containerCss} `}>
           <FormProvider {...methods} onSubmit={onSubmit}>
-            <form method={methods} onSubmit={onSubmit}>
+            <form method={methods} onSubmit={onSubmit} className=" content-box">
               <div>
-                <p className="font-normal text-[32px] leading-[54.08px] text-center">
-                  {title}
-                </p>
+                <p className="font-normal text-[32px]  text-center">{title}</p>
               </div>
 
-              <div className="mt-3 mb-20 text-xl "> {children} </div>
-
+              <div className="my-3 text-xl  "> {children} </div>
               <div className="flex justify-around  px-10">
                 <Button
                   HandleClick={onClose}

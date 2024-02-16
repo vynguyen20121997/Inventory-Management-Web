@@ -52,6 +52,7 @@ const ShelfPageShelf = () => {
   const handlePageChange = ({ pageIndex }) => {
     setSearchParams({ page: pageIndex });
   };
+  console.log("open", openAddDialog);
 
   return (
     <>
