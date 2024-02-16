@@ -7,8 +7,10 @@ import PublicRoute from "./PublicRoute/PublicRoute";
 import ImportHistoryPage from "../feature/ImportHistoryPage/ImportHistoryPage";
 import ExportHistoryPage from "../feature/ExportHistoryPage/ExportHistoryPage";
 import ExportPage from "../feature/ExportPage/ExportPage";
+import TemplateExportPage from "../feature/ExportPage/components/TemplateExportPage";
 
 const sentryCreateBrowserRouter = wrapCreateBrowserRouter(createBrowserRouter);
+
 const router = sentryCreateBrowserRouter([
   {
     element: <PublicRoute />,
@@ -41,6 +43,13 @@ const router = sentryCreateBrowserRouter([
       {
         path: PATHS.export,
         element: <ExportPage />,
+        // handle: {
+        //   roles:
+        // },
+      },
+      {
+        path: PATHS.export_template,
+        element: <TemplateExportPage />,
         // handle: {
         //   roles:
         // },

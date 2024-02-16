@@ -13,6 +13,8 @@ const DataTable = ({
   pageSize,
   pageIndex,
   onPageChange,
+  pagination = true,
+  style,
 }) => {
   const table = useReactTable({
     columns,
@@ -37,7 +39,7 @@ const DataTable = ({
               {table?.getHeaderGroups()?.map((headerGroup) => (
                 <tr
                   key={headerGroup.id}
-                  className="border-none text-[#676767] text-xl"
+                  className={`border-none text-[#676767] text-xl ${style} `}
                 >
                   {headerGroup.headers.map((header) => (
                     <th key={header.id} className="font-normal">
@@ -69,16 +71,18 @@ const DataTable = ({
             </tbody>
           </table>
         </div>
-        <div className="row-span-1 justify-self-center">
-          <TablePagination
-            pageIndex={pageIndex || 0}
-            total={total || 0}
-            onPageChange={(page) => {
-              table.setPageIndex(page);
-              onPageChange({ pageIndex: page });
-            }}
-          />
-        </div>
+        {pagination && (
+          <div className="row-span-1 justify-self-center">
+            <TablePagination
+              pageIndex={pageIndex || 0}
+              total={total || 0}
+              onPageChange={(page) => {
+                table.setPageIndex(page);
+                onPageChange({ pageIndex: page });
+              }}
+            />
+          </div>
+        )}
       </div>
     </>
   );

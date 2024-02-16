@@ -82,3 +82,19 @@ export const dataTableExport = {
   limit: 20,
   total: 3,
 };
+
+export const dataTableTemplateExport = {
+  data: [
+    {
+      stt: 1,
+      date: "Tanner",
+      import: 33,
+      export: 100,
+      quantity: 1222,
+      notes: "lorem ílum",
+    },
+  ],
+  page: 1,
+  limit: 20,
+  total: 3,
+};
