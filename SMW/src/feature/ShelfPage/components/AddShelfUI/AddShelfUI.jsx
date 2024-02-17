@@ -1,6 +1,7 @@
 import { useForm, Controller } from 'react-hook-form';
 import Button from '../../../../components/button/Button.jsx';
-// import TextInput from '../../../../components/form/TextInput.jsx';
+import TextInput from '../../../../components/form/TextInput.jsx';
+
 const defaultValues = {
   shelfName: '',
   shelfDes: '',
@@ -26,6 +27,7 @@ const AddShelfUI = ({ closeForm }) => {
             <label htmlFor="shelfName" className="text-xl mr-4 ">
               Shelf Name:
             </label>
+
             {/* <TextInput
               width="[368px]"
               height="[47px]"

@@ -10,13 +10,20 @@ import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import DeleteShelfUI from './components/DeleteShelfUI/DeleteShelfUI.jsx';
 const ShelfPage = () => {
   const [deleteShelf, setDeleteShelf] = useState(false);
+  const [getShelfName, setGetShelfName] = useState('');
   const table = useReactTable({
     data: shelfList,
     columns: shelfColumns,
     getCoreRowModel: getCoreRowModel(),
   });
-  const onDelete = (shelfName) => {
-    console.log(shelfName);
+  const onGetDeleteShelf = (shelfName) => {
+    setGetShelfName(shelfName);
+  };
+  const onCancelDelete = () => {
+    setGetShelfName('');
+  };
+  const onConfirmDelete = () => {
+    console.log('Delete Shelf');
   };
   return (
     <>
@@ -38,13 +45,21 @@ const ShelfPage = () => {
                   shelfName={rows.original?.shelfName}
                   shelfTotalItem={rows.original?.shelfTotalItem}
                   deleteIcon={deleteShelf}
-                  onHandleDelete={onDelete}
+                  onHandleDelete={onGetDeleteShelf}
                 />
               </div>
             ))}
         </div>
       </TableContainer>
-      {/* <DeleteShelfUI /> */}
+      <div className="relative">
+        {getShelfName && (
+          <DeleteShelfUI
+            shelfName={getShelfName}
+            onCancelDelete={onCancelDelete}
+            onConfirmDelete={onConfirmDelete}
+          />
+        )}
+      </div>
     </>
   );
 };
