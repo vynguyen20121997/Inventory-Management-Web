@@ -17,7 +17,7 @@ const SearchBarShelfPageShelf = ({ handleClickOpenAdd }) => {
           width="w-[132px]"
           textSize="text-xl"
         />
-        <img src={ExportIcon} alt="" />
+        <img src={ExportIcon} alt="export" />
       </div>
     </div>
   );
