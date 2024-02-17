@@ -1,6 +1,6 @@
 import { useForm, Controller } from 'react-hook-form';
 import Button from '../../../../components/button/Button.jsx';
-import TextInput from '../../../../components/form/TextInput.jsx';
+// import TextInput from '../../../../components/form/TextInput.jsx';
 
 const defaultValues = {
   shelfName: '',
@@ -29,11 +29,11 @@ const AddShelfUI = ({ closeForm }) => {
             </label>
 
             {/* <TextInput
-              width="[368px]"
-              height="[47px]"
-              name="shelfName"
-              placeHolder="Type Shelf Name"
-              control={control}
+            width="[368px]"
+            height="[47px]"
+            name="shelfName"
+            placeHolder="Type Shelf Name"
+            control={control}
             /> */}
           </div>
           <div className="flex items-center">
