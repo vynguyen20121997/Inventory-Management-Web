@@ -1,10 +1,14 @@
 // import TextInput from '../../../../components/form/TextInput.jsx';
 import Button from '../../../../components/button/Button.jsx';
-import { useState } from 'react';
 import AddShelfUI from '../AddShelfUI/AddShelfUI';
 import TextInputWithSearchIcon from '../../../../components/form/TextInputWithIcon.jsx';
+import useToogleDialog from '../../../../hooks/useToogleDialog/useToogleDialog.jsx';
 const ShelfSearchBar = ({ onCloseShelf, closeShelf }) => {
-  const [openAddShelf, setOpenAddShelf] = useState(false);
+  const {
+    open: openForm,
+    handleOpen: handleOpenAddForm,
+    handleClose: handleCloseAddForm,
+  } = useToogleDialog(false);
   return (
     <div className=" grid place-items-center grid-cols-1   ">
       <div className=" flex w-full justify-between  ">
@@ -41,12 +45,12 @@ const ShelfSearchBar = ({ onCloseShelf, closeShelf }) => {
               width={'w-[132px]'}
               height={'h-[50px]'}
               title={'Add Shelf'}
-              HandleClick={() => setOpenAddShelf(true)}
+              HandleClick={() => handleOpenAddForm()}
             />
           </span>
         </div>
       </div>
-      {openAddShelf && <AddShelfUI closeForm={() => setOpenAddShelf(false)} />}
+      <AddShelfUI openAddForm={openForm} closeForm={handleCloseAddForm} />
     </div>
   );
 };
