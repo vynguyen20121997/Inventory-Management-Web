@@ -1,3 +1,3 @@
-export const view = (props) => {
-  return props.if ? props.children : null;
+export const view = ({ if: show, children }) => {
+  return show && children;
 };
