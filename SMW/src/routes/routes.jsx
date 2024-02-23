@@ -1,14 +1,14 @@
-import { wrapCreateBrowserRouter } from '@sentry/react';
-import { createBrowserRouter } from 'react-router-dom';
-import { PATHS } from '../constant/urls';
-import ShelfPageShelf from '../feature/ShelfPageShelf/ShelfPageShelf';
-import PrivateRoute from './PrivateRoute/PrivateRoute';
-import PublicRoute from './PublicRoute/PublicRoute';
-import ImportHistoryPage from '../feature/ImportHistoryPage/ImportHistoryPage';
-import ExportHistoryPage from '../feature/ExportHistoryPage/ExportHistoryPage';
-import ExportPage from '../feature/ExportPage/ExportPage';
-import TemplateExportPage from '../feature/ExportPage/components/TemplateExportPage';
-import ShelfPage from '../feature/ShelfPage/ShelfPage';
+import { wrapCreateBrowserRouter } from "@sentry/react";
+import { createBrowserRouter } from "react-router-dom";
+import { PATHS } from "../constant/urls";
+import ShelfPageShelf from "../feature/ShelfPageShelf/ShelfPageShelf";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import PublicRoute from "./PublicRoute/PublicRoute";
+import ImportHistoryPage from "../feature/ImportHistoryPage/ImportHistoryPage";
+import ExportHistoryPage from "../feature/ExportHistoryPage/ExportHistoryPage";
+import ExportPage from "../feature/ExportPage/ExportPage";
+import TemplateExportPage from "../feature/ExportPage/components/TemplateExportPage";
+import ShelfPage from "../feature/ShelfPage/ShelfPage";
 const sentryCreateBrowserRouter = wrapCreateBrowserRouter(createBrowserRouter);
 
 const router = sentryCreateBrowserRouter([
@@ -19,6 +19,10 @@ const router = sentryCreateBrowserRouter([
   {
     element: <PrivateRoute />,
     children: [
+      {
+        path: PATHS.shelf,
+        element: <ShelfPage />,
+      },
       {
         path: PATHS.shelfInfo,
         element: <ShelfPageShelf />,
@@ -53,10 +57,6 @@ const router = sentryCreateBrowserRouter([
         // handle: {
         //   roles:
         // },
-      },
-      {
-        path: PATHS.shelf,
-        element: <ShelfPage />,
       },
     ],
   },

@@ -29,6 +29,26 @@ export const dataTableShelf = {
   total: 3,
 };
 
+export const dataTableShelfShelfList = {
+  data: [
+    { shelfId: 1, shelfName: 1, shelfTotalItem: 500 },
+    { shelfId: 2, shelfName: 2, shelfTotalItem: 1000 },
+    { shelfId: 3, shelfName: 3, shelfTotalItem: 900 },
+    { shelfId: 4, shelfName: 4, shelfTotalItem: 1566 },
+    { shelfId: 5, shelfName: 5, shelfTotalItem: 766 },
+    { shelfId: 6, shelfName: 6, shelfTotalItem: 538 },
+    { shelfId: 7, shelfName: 7, shelfTotalItem: 640 },
+    { shelfId: 8, shelfName: 8, shelfTotalItem: 600 },
+    { shelfId: 9, shelfName: 9, shelfTotalItem: 3000 },
+    { shelfId: 10, shelfName: 10, shelfTotalItem: 200 },
+    { shelfId: 11, shelfName: 11, shelfTotalItem: 50 },
+    { shelfId: 12, shelfName: 12, shelfTotalItem: 180 },
+  ],
+  page: 1,
+  limit: 12,
+  total: 3,
+};
+
 export const dataTableImportHistory = {
   data: [
     {

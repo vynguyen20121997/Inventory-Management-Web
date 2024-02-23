@@ -1,65 +1,101 @@
-import { useState } from 'react';
-import ShelfSearchBar from './components/ShelfSearchBar/ShelfSearchBar.jsx';
-import ShelfItem from './components/ShelfItem/ShelfItem';
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import TablePopup from "../../components/dataTable/TablePopup.jsx";
 import {
   SearchBarContainer,
   TableContainer,
-} from '../../components/pageContainer';
-import { shelfColumns, shelfList } from '../../tests/dataShelf.jsx';
-import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
-import DeleteShelfUI from './components/DeleteShelfUI/DeleteShelfUI.jsx';
+} from "../../components/pageContainer";
+import useToogleDialog from "../../hooks/useToogleDialog/useToogleDialog.jsx";
+import { dataTableShelfShelfList } from "../../tests/dataTable.js";
+import AddDialogShelf from "./components/AddDialogShelf.jsx";
+import ShelfPageDataTable from "./components/ShelfPageDataTable.jsx";
+import ShelfSearchBar from "./components/ShelfSearchBar.jsx";
+import {
+  DELETE_SHELF_ITEM_MESSAGE,
+  SHELF_LIMIT,
+} from "./constants/constants.js";
+import ShelfPageColumns from "./hooks/ShelfPageColumns.jsx";
+
 const ShelfPage = () => {
-  const [deleteShelf, setDeleteShelf] = useState(false);
-  const [getShelfName, setGetShelfName] = useState('');
-  const table = useReactTable({
-    data: shelfList,
-    columns: shelfColumns,
-    getCoreRowModel: getCoreRowModel(),
-  });
-  const onGetDeleteShelf = (shelfName) => {
-    setGetShelfName(shelfName);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [shelfId, setShelfId] = useState("");
+
+  const [shelfName, setShelfName] = useState(""); // wait for get shelf info by ID
+
+  const {
+    open: activateDelete,
+    handleOpen: handleActivateDelete,
+    handleClose: handleDeactivateDelete,
+  } = useToogleDialog(false);
+
+  const {
+    open: openDeleteDialog,
+    handleOpen: handleOpenDeleteDialog,
+    handleClose: handleCloseDeleteDialog,
+  } = useToogleDialog(false);
+
+  const {
+    open: openAddDialog,
+    handleOpen: handleOpenAddDialog,
+    handleClose: handleCloseAddDialog,
+  } = useToogleDialog(false);
+
+  const handleClickDeleteShelf = (id, name) => {
+    handleOpenDeleteDialog();
+    setShelfId(id);
+    setShelfName(name);
   };
-  const onCancelDelete = () => {
-    setGetShelfName('');
+
+  const handleDelete = () => {
+    console.log(shelfId);
   };
-  const onConfirmDelete = () => {
-    console.log('Delete Shelf');
+
+  const handlePageChange = ({ pageIndex }) => {
+    setSearchParams({ page: pageIndex });
   };
+
+  const columns = ShelfPageColumns();
   return (
     <>
       <SearchBarContainer>
         <ShelfSearchBar
-          onCloseShelf={setDeleteShelf}
-          closeShelf={deleteShelf}
+          activateDelete={activateDelete}
+          handleActivateDelete={handleActivateDelete}
+          handleDeactivateDelete={handleDeactivateDelete}
+          handleOpenAddDialog={handleOpenAddDialog}
         />
       </SearchBarContainer>
+
       <TableContainer>
-        <div className=" mx-[8px] py-[25px] px-[20px] grid grid-cols-4 grid-rows-3 grid-flow-row  h-fit place-items-center rounded-[10px] bg-[#FFFFFF] ">
-          {table.getCoreRowModel().rows.length > 0 &&
-            table.getCoreRowModel().rows.map((rows) => (
-              <div
-                key={rows.id}
-                className="place-items-center rounded-[10px] bg-[#FFFFFF]"
-              >
-                <ShelfItem
-                  shelfName={rows.original?.shelfName}
-                  shelfTotalItem={rows.original?.shelfTotalItem}
-                  deleteIcon={deleteShelf}
-                  onHandleDelete={onGetDeleteShelf}
-                />
-              </div>
-            ))}
-        </div>
+        <ShelfPageDataTable
+          columns={columns}
+          dataTable={dataTableShelfShelfList.data}
+          total={dataTableShelfShelfList.total}
+          pageIndex={searchParams.get("page") - 1}
+          pageSize={SHELF_LIMIT}
+          activateDelete={activateDelete}
+          handleClickDeleteShelf={handleClickDeleteShelf}
+          onPageChange={handlePageChange}
+        />
       </TableContainer>
-      <div className="relative">
-        {getShelfName && (
-          <DeleteShelfUI
-            shelfName={getShelfName}
-            onCancelDelete={onCancelDelete}
-            onConfirmDelete={onConfirmDelete}
-          />
+
+      <TablePopup
+        style="pt-12"
+        open={openDeleteDialog}
+        message={DELETE_SHELF_ITEM_MESSAGE.delete.replace(
+          "{{ name }}",
+          shelfName
         )}
-      </div>
+        onSubmit={handleDelete}
+        onClose={handleCloseDeleteDialog}
+      />
+
+      <AddDialogShelf
+        onSubmit={() => {}}
+        openAddForm={openAddDialog}
+        closeForm={handleCloseAddDialog}
+      />
     </>
   );
 };
