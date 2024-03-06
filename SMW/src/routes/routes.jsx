@@ -8,7 +8,7 @@ import ImportHistoryPage from "../feature/ImportHistoryPage/ImportHistoryPage";
 import ExportHistoryPage from "../feature/ExportHistoryPage/ExportHistoryPage";
 import ExportPage from "../feature/ExportPage/ExportPage";
 import TemplateExportPage from "../feature/ExportPage/components/TemplateExportPage";
-
+import ShelfPage from "../feature/ShelfPage/ShelfPage";
 const sentryCreateBrowserRouter = wrapCreateBrowserRouter(createBrowserRouter);
 
 const router = sentryCreateBrowserRouter([
@@ -19,6 +19,10 @@ const router = sentryCreateBrowserRouter([
   {
     element: <PrivateRoute />,
     children: [
+      {
+        path: PATHS.shelf,
+        element: <ShelfPage />,
+      },
       {
         path: PATHS.shelfInfo,
         element: <ShelfPageShelf />,
