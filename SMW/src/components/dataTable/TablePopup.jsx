@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import Button from "../button/Button";
 
-const TablePopup = ({ open, message, onSubmit, onClose }) => {
+const TablePopup = ({ open, message, onSubmit, onClose, style }) => {
   const dialogRef = useRef(null);
 
   useEffect(() => {
@@ -25,8 +25,12 @@ const TablePopup = ({ open, message, onSubmit, onClose }) => {
 
   return (
     <dialog className="modal " ref={dialogRef}>
-      <div className="modal-box rounded-md bg-[#FFFFFF] w-[517px] h-[213px]">
-        <div className=" text-[32px] "> {message} </div>
+      <div
+        className={`modal-box rounded-md bg-[#FFFFFF] w-[517px] h-[213px] ${style}`}
+      >
+        <div className=" text-[32px] text-center	 ">
+          <p> {message}</p>
+        </div>
         <div className="flex justify-around mt-5  px-10">
           <Button
             HandleClick={onClose}
