@@ -9,12 +9,13 @@ import ExportHistoryPage from "../feature/ExportHistoryPage/ExportHistoryPage";
 import ExportPage from "../feature/ExportPage/ExportPage";
 import TemplateExportPage from "../feature/ExportPage/components/TemplateExportPage";
 import ShelfPage from "../feature/ShelfPage/ShelfPage";
+import LoginPage from "../feature/LoginPage/LoginPage";
 const sentryCreateBrowserRouter = wrapCreateBrowserRouter(createBrowserRouter);
 
 const router = sentryCreateBrowserRouter([
   {
     element: <PublicRoute />,
-    // children: [{ path: PATHS.home, element: <LoginPage /> }],
+    children: [{ path: PATHS.home, element: <LoginPage /> }],
   },
   {
     element: <PrivateRoute />,

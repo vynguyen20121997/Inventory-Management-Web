@@ -65,6 +65,7 @@ const ShelfPageShelf = () => {
     setSearchParams({ page: pageIndex });
   };
 
+  console.log(data);
   return (
     <>
       <SearchBarContainer>

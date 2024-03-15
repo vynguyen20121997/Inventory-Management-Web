@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import TextInput from "../../../components/form/TextInput.jsx";
-import FormDialog from "../../../components/form/formDialog/FormDialog.jsx";
+import FormDialog from "../../../components/form/form/FormDialog.jsx";
 import { SHELF_DEFAULT_VALUES } from "../constants/constants.js";
 import useShelfPageAddSchema from "../validations/add-shelf.jsx";
 

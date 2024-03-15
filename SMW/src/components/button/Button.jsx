@@ -3,16 +3,17 @@ const Button = (props) => {
   const {
     title,
     HandleClick,
-    height = 'h-[46px]',
-    width = 'w-[149px]',
-    backGround = 'bg-colorMain',
+    height = "h-[46px]",
+    width = "w-[149px]",
+    backGround = "bg-colorMain",
     textSize,
-    textColor = 'text-textColorMain',
+    textColor = "text-textColorMain",
   } = props;
+
   return (
     <>
       <button
-        className={`${height} ${width} ${backGround} ${textSize} rounded-[10px] ${textColor} `}
+        className={` btn ${height} ${width} ${backGround} ${textSize} rounded-[10px] ${textColor} focus:outline-none focus:ring-0 border-none`}
         type="button"
         onClick={HandleClick}
       >
