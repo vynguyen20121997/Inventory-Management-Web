@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import FormDialog from "../../../components/form/formDialog/FormDialog";
+import FormDialog from "../../../components/form/form/FormDialog";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useShelfPageShelfAddSchema from "../validations/add-shelf-item";
 import { SHELF_ITEM_DEFAULT_VALUES } from "../constants/constants";

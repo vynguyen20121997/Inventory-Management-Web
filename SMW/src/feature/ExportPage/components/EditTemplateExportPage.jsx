@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import FormDialog from "../../../components/form/formDialog/FormDialog";
+import FormDialog from "../../../components/form/form/FormDialog";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useEditTemplateExportPageSchema from "../validations/edit-template-export";
 import { EDIT_TEMPLATE_EXPORT_DEFAULT_VALUES } from "../constants/constants";

@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import TablePopup from "../../../components/dataTable/TablePopup";
 import NumberInput from "../../../components/form/NumberInput";
-import FormDialog from "../../../components/form/formDialog/FormDialog";
+import FormDialog from "../../../components/form/form/FormDialog";
 import {
   DELETE_SHELF_ITEM_MESSAGE,
   EDIT_SHELF_ITEM_DEFAULT_VALUES,

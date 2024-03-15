@@ -14,6 +14,8 @@ import {
   EditDialogShelfPageShelf,
   SearchBarShelfPageShelf,
 } from "./components";
+import { useShelfPageShelfItems } from "../../queries/shelfPageShelf/shelfPageShelfQuery";
+import { GET_LIST_DIRECTION } from "../../constant/enums";
 
 const ShelfPageShelf = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -44,6 +46,16 @@ const ShelfPageShelf = () => {
     handleOpenEditDialog();
   }, [handleOpenEditDialog]);
 
+  const page = 1;
+
+  const { data } = useShelfPageShelfItems({
+    ...searchParams,
+    page,
+    limit: SHELF_ITEM_LIMIT,
+    order: "updated_at",
+    direction: GET_LIST_DIRECTION.DESC,
+  });
+
   const columns = ShelfPageShelfColumns({
     onEdit: handleClickOpenEdit,
     onDelete: () => {},
@@ -53,6 +65,7 @@ const ShelfPageShelf = () => {
     setSearchParams({ page: pageIndex });
   };
 
+  console.log(data);
   return (
     <>
       <SearchBarContainer>
