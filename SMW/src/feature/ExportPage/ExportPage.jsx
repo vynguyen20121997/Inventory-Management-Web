@@ -9,7 +9,7 @@ import { EXPORT_PAGE_DATA_LIMIT } from "./constants/constants";
 import { dataTableExport } from "../../tests/dataTable";
 import ExportPageColumns from "./hooks/ExportPageColumns";
 import EditTemplateExportPage from "./components/EditTemplateExportPage";
-import useToogleDialog from "../../hooks/useToogleDialog/useToogleDialog";
+import useToogleDialog from "../../hooks/useToogleDialog";
 
 const ExportPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
