@@ -3,7 +3,7 @@ import {
   SearchBarContainer,
   TableContainer,
 } from "../../../components/pageContainer";
-import useToogleDialog from "../../../hooks/useToogleDialog/useToogleDialog";
+import useToogleDialog from "../../../hooks/useToogleDialog";
 import { dataTableTemplateExport } from "../../../tests/dataTable";
 import TemplateExportPageColumns from "../hooks/TemplateExportPageColumns";
 import EditTemplateExportPage from "./EditTemplateExportPage";

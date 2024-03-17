@@ -1,5 +1,5 @@
 export const SHELF_DEFAULT_VALUES = {
-  userName: "",
+  email: "",
   password: "",
 };
 

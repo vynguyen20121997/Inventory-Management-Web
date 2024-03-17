@@ -1,11 +1,8 @@
-import {
-  useMutation as rqUseMutation,
-  useQuery as rqUseQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
 import { STATUS_CODE } from "../../constant/enums";
+import { useMutation } from "react-query";
 
 export const UseQueryOptions = {
   RETRY_TIMES: 0,
@@ -39,7 +36,7 @@ export function createUseQuery(service) {
         const queryKey = queryKeyString;
         const querySource = { request };
 
-        const query = rqUseQuery({
+        const query = useQuery({
           queryKey: [queryKey, querySource],
           queryFn: async (context) => {
             try {
@@ -97,48 +94,26 @@ export function createUseQuery(service) {
 }
 
 export function createUseMutation(service) {
-  return function inferMutation(inferredBase) {
-    return function useMutationBase(options) {
-      const queryClient = useQueryClient();
-
-      const mutation = rqUseMutation({
-        ...options,
-        throwOnError: (error) => {
-          if (error instanceof AxiosError) {
-            if (error?.response) {
-              return error?.response?.status >= STATUS_CODE.INTERNAL_ERROR;
-            }
-          }
-
-          return false;
-        },
-        mutationFn: async (variables) => {
-          const result =
-            await service[inferredBase.entity]["mutation"][inferredBase.action](
-              variables
-            );
-
-          return result;
-        },
-        onMutate: options?.onBeforeMutate,
-        onSuccess: async (data, variables, context) => {
-          if (options?.invalidateKey) {
-            await queryClient.invalidateQueries({
-              queryKey: options?.invalidateKey,
-            });
-          }
-          await options?.onSuccess?.(data, variables, context);
-        },
-        onError: (error, variables, context) => {
-          options?.onError?.(error, variables, context);
-        },
-      });
-      const { isPending } = mutation;
-
-      return {
-        ...mutation,
-        isMutationExecuting: isPending,
-      };
+  return function InferMutation(inferredBase, options) {
+    const mutation = useMutation({
+      mutationFn: async (variables) => {
+        const result =
+          await service[inferredBase.entity]["mutation"][inferredBase.action](
+            variables
+          );
+        return result;
+      },
+      onError: (error) => {
+        // An error happened!
+        options.onError(error.data);
+      },
+      onSuccess: (data) => {
+        // Boom baby!
+        options.onSuccess(data.data);
+      },
+    });
+    return {
+      mutation,
     };
   };
 }

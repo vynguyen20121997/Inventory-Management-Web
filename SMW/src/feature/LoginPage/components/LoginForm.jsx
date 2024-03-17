@@ -6,22 +6,28 @@ import useLoginSchema from "../validations/login";
 import Form from "../../../components/form/form/Form";
 import Button from "../../../components/button/Button";
 
-const LoginForm = () => {
+const LoginForm = ({ onSubmit }) => {
   const methods = useForm({
     resolver: zodResolver(useLoginSchema()),
     defaultValues: SHELF_DEFAULT_VALUES,
   });
 
+  const { handleSubmit } = methods;
+
+  const handleFormSubmit = handleSubmit((data) => {
+    onSubmit(data);
+  });
+
   return (
     <>
       <div className="row-span-1">
-        <Form methods={methods} onSubmit={() => {}}>
+        <Form methods={methods} onSubmit={handleFormSubmit}>
           <div className="flex flex-col items-center gap-6">
             <div>
               <TextInput
                 style={" w-[315px] h-[47px]  text-[24px]"}
-                name="userName"
-                placeHolder=" Username"
+                name="email"
+                placeHolder=" Email Address"
               />
             </div>
 
@@ -37,7 +43,7 @@ const LoginForm = () => {
       </div>
       <div className="row-span-1 flex justify-center items-center">
         <Button
-          HandleClick={() => {}}
+          HandleClick={handleFormSubmit}
           title="Login"
           height="h-[46px]"
           width="w-[149px]"

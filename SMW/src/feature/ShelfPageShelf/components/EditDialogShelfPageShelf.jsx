@@ -10,7 +10,7 @@ import {
 } from "../constants/constants";
 import useShelfPageShelfEditSchema from "../validations/edit-shelf-item";
 import DeleteIcon from "/src/assets/icons-delete.svg";
-import useToogleDialog from "../../../hooks/useToogleDialog/useToogleDialog";
+import useToogleDialog from "../../../hooks/useToogleDialog";
 
 const EditDialogShelfPageShelf = ({
   open,
