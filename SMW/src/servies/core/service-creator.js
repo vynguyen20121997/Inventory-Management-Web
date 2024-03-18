@@ -1,6 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
-
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import errorHandling from "../../packages/error/ErrorHandling";
 
 export const UseQueryOptions = {
   RETRY_TIMES: 0,
@@ -32,7 +31,7 @@ export function createUseQuery(service) {
               inferredBase.action
             ]();
           } catch (e) {
-            console.error(e);
+            errorHandling(e.response.data.message);
           }
         },
         enabled: true,
