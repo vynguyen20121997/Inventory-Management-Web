@@ -13,8 +13,8 @@ import {
   EditDialogShelfPageShelf,
   SearchBarShelfPageShelf,
 } from "./components";
-import { useShelfPageShelfItems } from "../../queries/shelfPageShelf/shelfPageShelfQuery";
-import { GET_LIST_DIRECTION } from "../../constant/enums";
+// import { useShelfPageShelfItems } from "../../queries/shelfPageShelf/shelfPageShelfQuery";
+// import { GET_LIST_DIRECTION } from "../../constant/enums";
 import useToogleDialog from "../../hooks/useToogleDialog";
 
 const ShelfPageShelf = () => {
@@ -46,15 +46,15 @@ const ShelfPageShelf = () => {
     handleOpenEditDialog();
   }, [handleOpenEditDialog]);
 
-  const page = 1;
+  // const page = 1;
 
-  const { data } = useShelfPageShelfItems({
-    ...searchParams,
-    page,
-    limit: SHELF_ITEM_LIMIT,
-    order: "updated_at",
-    direction: GET_LIST_DIRECTION.DESC,
-  });
+  // const { data } = useShelfPageShelfItems({
+  //   ...searchParams,
+  //   page,
+  //   limit: SHELF_ITEM_LIMIT,
+  //   order: "updated_at",
+  //   direction: GET_LIST_DIRECTION.DESC,
+  // });
 
   const columns = ShelfPageShelfColumns({
     onEdit: handleClickOpenEdit,
@@ -65,7 +65,6 @@ const ShelfPageShelf = () => {
     setSearchParams({ page: pageIndex });
   };
 
-  console.log(data);
   return (
     <>
       <SearchBarContainer>

@@ -1,9 +1,9 @@
 import HttpService from "../core/http-service";
 import { defineService } from "../core/service-creator";
 
-const api = new HttpService("/supplies");
+const api = new HttpService("/shelves");
 
-const shelfPageShelfServices = defineService({
+const shelfPageServices = defineService({
   query: {
     getList: (params) => {
       return api.getAll({ params });
@@ -11,4 +11,4 @@ const shelfPageShelfServices = defineService({
   },
 });
 
-export default shelfPageShelfServices;
+export default shelfPageServices;

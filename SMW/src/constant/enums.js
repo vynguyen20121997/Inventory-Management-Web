@@ -17,6 +17,7 @@ export const ENTITY = {
   AUTH: "auth",
   USER: "user",
   //ShelfPage
+  SHELFPAGE: "shelves",
   SHELFPAGESHELF: "supplies",
 };
 

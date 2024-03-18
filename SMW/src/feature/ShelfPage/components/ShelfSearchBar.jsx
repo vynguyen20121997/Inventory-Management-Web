@@ -1,18 +1,34 @@
-// import TextInput from '../../../../components/form/TextInput.jsx';
+import { useForm } from "react-hook-form";
 import Button from "../../../components/button/Button.jsx";
+import RadioInput from "../../../components/form/RadioInput.jsx";
 import TextInputWithSearchIcon from "../../../components/form/TextInputWithIcon.jsx";
+import Form from "../../../components/form/form/Form.jsx";
 const ShelfSearchBar = ({
   activateDelete,
   handleActivateDelete,
   handleDeactivateDelete,
   handleOpenAddDialog,
 }) => {
+  const methods = useForm({});
+
   return (
     <div className=" grid place-items-center grid-cols-1   ">
       <div className=" flex w-full justify-between  ">
-        <div className=" ml-[10px] ">
-          <TextInputWithSearchIcon />
-        </div>
+        <Form methods={methods} onSubmit={() => {}}>
+          <div className=" ml-[10px] flex ">
+            <TextInputWithSearchIcon />
+            <div className="ml-[10px] w-[67px]">
+              <div className=" flex justify-between items-center">
+                <RadioInput name={"byShelf"} />
+                <p>by Shelf</p>
+              </div>
+              <div className=" flex justify-between  items-center">
+                <RadioInput name={"byItem"} />
+                <p>by Item</p>
+              </div>
+            </div>
+          </div>
+        </Form>
 
         <div className="mr-[19px]">
           <span className="mr-[19px] hover:opacity-80 transition-all ">
@@ -38,7 +54,7 @@ const ShelfSearchBar = ({
               height={"h-[50px]"}
               backGround={"bg-[#9F9F9F]"}
               HandleClick={handleActivateDelete}
-              textSize={"text-2xl"}
+              textSize="text-[24px] font-normal	text-nowrap"
             />
           </span>
 
@@ -48,7 +64,7 @@ const ShelfSearchBar = ({
               height={"h-[50px]"}
               title={"Add Shelf"}
               HandleClick={handleOpenAddDialog}
-              textSize={"text-2xl"}
+              textSize="text-[24px] font-normal	"
             />
           </span>
         </div>
