@@ -39,6 +39,7 @@ const ShelfPageDataTable = ({
               >
                 <ShelfItem
                   shelfId={rows.original?._id}
+                  shelfDescription={rows.original?.descriptions}
                   shelfName={rows.original?.title}
                   shelfTotalItem={rows.original?.totalSupplies}
                   deleteIcon={activateDelete}
