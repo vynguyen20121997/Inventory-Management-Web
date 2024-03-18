@@ -3,6 +3,7 @@ import { Suspense, useEffect, useRef } from "react";
 import Button from "../../button/Button";
 import { FormProvider } from "react-hook-form";
 import GlobalLoading from "../../globalLoading/GlobalLoading";
+import { ErrorBoundary } from "@sentry/react";
 
 const FormDialog = ({
   children,
@@ -42,36 +43,46 @@ const FormDialog = ({
   }, [onClose, open]);
 
   return (
-    <Suspense fallback={<GlobalLoading />}>
-      <dialog className="modal " ref={dialogRef}>
-        <div className={`modal-box rounded-md bg-[#FFFFFF]  ${containerCss} `}>
-          <FormProvider {...methods} onSubmit={onSubmit}>
-            <form method={methods} onSubmit={onSubmit} className=" content-box">
-              <div>
-                <p className="font-normal text-[32px]  text-center">{title}</p>
-              </div>
+    <ErrorBoundary fallback={<div>Failed to fetch data!</div>}>
+      <Suspense fallback={<GlobalLoading />}>
+        <dialog className="modal " ref={dialogRef}>
+          <div
+            className={`modal-box rounded-md bg-[#FFFFFF]  ${containerCss} `}
+          >
+            <FormProvider {...methods} onSubmit={onSubmit}>
+              <form
+                method={methods}
+                onSubmit={onSubmit}
+                className=" content-box"
+              >
+                <div>
+                  <p className="font-normal text-[32px]  text-center">
+                    {title}
+                  </p>
+                </div>
 
-              <div className="my-3 text-xl  "> {children} </div>
-              <div className="flex justify-around  px-10">
-                <Button
-                  HandleClick={onClose}
-                  title="Cancel"
-                  height="h-[46px]"
-                  width="w-[119px]"
-                  backGround="bg-[#9F9F9F]"
-                />
-                <Button
-                  HandleClick={onSubmit}
-                  title="Save"
-                  height="h-[46px]"
-                  width="w-[119px]"
-                />
-              </div>
-            </form>{" "}
-          </FormProvider>
-        </div>
-      </dialog>
-    </Suspense>
+                <div className="my-3 text-xl  "> {children} </div>
+                <div className="flex justify-around  px-10">
+                  <Button
+                    HandleClick={onClose}
+                    title="Cancel"
+                    height="h-[46px]"
+                    width="w-[119px]"
+                    backGround="bg-[#9F9F9F]"
+                  />
+                  <Button
+                    HandleClick={onSubmit}
+                    title="Save"
+                    height="h-[46px]"
+                    width="w-[119px]"
+                  />
+                </div>
+              </form>{" "}
+            </FormProvider>
+          </div>
+        </dialog>
+      </Suspense>
+    </ErrorBoundary>
   );
 };
 

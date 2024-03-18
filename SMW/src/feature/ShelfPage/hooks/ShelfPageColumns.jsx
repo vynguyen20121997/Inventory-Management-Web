@@ -1,11 +1,11 @@
 const ShelfPageColumns = () => {
   const columns = [
     {
-      accessorKey: "shelfName",
+      accessorKey: "title",
       cell: (info) => <div> {info.getValue()} </div>,
     },
     {
-      accessorKey: "shelfTotalItem",
+      accessorKey: "totalSupplies",
       cell: (info) => <div> {info.getValue()} </div>,
     },
   ];

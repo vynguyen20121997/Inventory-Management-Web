@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import TablePopup from "../../components/dataTable/TablePopup.jsx";
+import GlobalLoading from "../../components/globalLoading/GlobalLoading.jsx";
 import {
   SearchBarContainer,
   TableContainer,
 } from "../../components/pageContainer";
-import { dataTableShelfShelfList } from "../../tests/dataTable.js";
+import useToogleDialog from "../../hooks/useToogleDialog.js";
+import { useShelfPage } from "../../queries/shelfPage/shelfPageQuery.js";
 import AddDialogShelf from "./components/AddDialogShelf.jsx";
 import ShelfPageDataTable from "./components/ShelfPageDataTable.jsx";
 import ShelfSearchBar from "./components/ShelfSearchBar.jsx";
@@ -14,7 +16,6 @@ import {
   SHELF_LIMIT,
 } from "./constants/constants.js";
 import ShelfPageColumns from "./hooks/ShelfPageColumns.jsx";
-import useToogleDialog from "../../hooks/useToogleDialog.js";
 
 const ShelfPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -22,6 +23,8 @@ const ShelfPage = () => {
   const [shelfId, setShelfId] = useState("");
 
   const [shelfName, setShelfName] = useState(""); // wait for get shelf info by ID
+
+  const { query } = useShelfPage();
 
   const {
     open: activateDelete,
@@ -56,6 +59,14 @@ const ShelfPage = () => {
   };
 
   const columns = ShelfPageColumns();
+
+  if (query?.data === undefined) {
+    return (
+      <div>
+        <GlobalLoading /> ...
+      </div>
+    );
+  }
   return (
     <>
       <SearchBarContainer>
@@ -70,8 +81,8 @@ const ShelfPage = () => {
       <TableContainer>
         <ShelfPageDataTable
           columns={columns}
-          dataTable={dataTableShelfShelfList.data}
-          total={dataTableShelfShelfList.total}
+          dataTable={query?.data?.shelves}
+          total={query?.data?.pagination}
           pageIndex={searchParams.get("page") - 1}
           pageSize={SHELF_LIMIT}
           activateDelete={activateDelete}

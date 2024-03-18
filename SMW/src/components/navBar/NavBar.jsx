@@ -25,6 +25,7 @@ const NavBar = ({ children }) => {
             {NAVBAR_ITEMS.map(({ path, title }) => (
               <>
                 <li
+                  key={title}
                   onClick={() => navigate(path)}
                   className={`tooltip w-full ${parentRoute === `${path}` && params.id === undefined ? "bg-[#B5DCFD]" : "bg-transparent"} rounded-md`}
                   data-tip={title}
@@ -44,7 +45,7 @@ const NavBar = ({ children }) => {
 
                   {path === parentRoute && params.id !== undefined ? (
                     <ul className="bg-[#B5DCFD] rounded-md ml-0 pl-6 ">
-                      <li>
+                      <li key="090">
                         <p className="font-normal text-2xl ">
                           {path === "export"
                             ? `${params.id}`
@@ -80,7 +81,7 @@ const NavBar = ({ children }) => {
                 >
                   {NAVPROFILE_ITEMS.map(({ path, title }) => (
                     <>
-                      <li>
+                      <li key={title}>
                         <button
                           className="btn btn-ghost content-center "
                           onClick={() => navigate(path)}
