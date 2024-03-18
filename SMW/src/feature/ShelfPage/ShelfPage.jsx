@@ -16,6 +16,7 @@ import {
   SHELF_LIMIT,
 } from "./constants/constants.js";
 import ShelfPageColumns from "./hooks/ShelfPageColumns.jsx";
+import useCreateShelf from "./hooks/useCreateShelf.js";
 
 const ShelfPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -25,6 +26,8 @@ const ShelfPage = () => {
   const [shelfName, setShelfName] = useState(""); // wait for get shelf info by ID
 
   const { query } = useShelfPage();
+
+  const { createShelf } = useCreateShelf();
 
   const {
     open: activateDelete,
@@ -48,6 +51,11 @@ const ShelfPage = () => {
     handleOpenDeleteDialog();
     setShelfId(id);
     setShelfName(name);
+  };
+
+  const handleAddShelf = (data) => {
+    createShelf(data);
+    handleCloseAddDialog();
   };
 
   const handleDelete = () => {
@@ -103,7 +111,7 @@ const ShelfPage = () => {
       />
 
       <AddDialogShelf
-        onSubmit={() => {}}
+        onSubmit={handleAddShelf}
         openAddForm={openAddDialog}
         closeForm={handleCloseAddDialog}
       />

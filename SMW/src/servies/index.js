@@ -4,7 +4,7 @@ import {
   createUseMutation,
   createUseQuery,
 } from "./core/service-creator";
-import shelfPageServices from "./shelfPage/shelfPageShelfServices";
+import shelfPageServices from "./shelfPage/shelfPageServices";
 import userService from "./userService";
 
 export const rootService = composeServices({

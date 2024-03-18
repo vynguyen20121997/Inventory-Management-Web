@@ -8,11 +8,14 @@ const ShelfItem = (props) => {
     shelfTotalItem,
     deleteIcon,
     handleClickDeleteShelf,
+    shelfDescription,
   } = props;
   const navigate = useNavigate();
-
   return (
-    <div className="w-[235px] h-[185px] font-normal ">
+    <div
+      className=" tooltip   w-[235px] h-[185px] font-normal "
+      data-tip={shelfDescription}
+    >
       <div className=" relative bg-[#E1E1E1] text-[40px]  ">
         <div
           className="m-auto w-fit leading-[120px] align-middle hover:cursor-pointer	"

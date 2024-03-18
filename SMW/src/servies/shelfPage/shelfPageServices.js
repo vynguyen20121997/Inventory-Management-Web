@@ -9,6 +9,11 @@ const shelfPageServices = defineService({
       return api.getAll({ params });
     },
   },
+  mutation: {
+    create: (payload) => {
+      return api.create(payload);
+    },
+  },
 });
 
 export default shelfPageServices;
