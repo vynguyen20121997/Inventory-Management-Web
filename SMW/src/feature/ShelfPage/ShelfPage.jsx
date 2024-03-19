@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import TablePopup from "../../components/dataTable/TablePopup.jsx";
 import GlobalLoading from "../../components/globalLoading/GlobalLoading.jsx";
@@ -18,15 +18,24 @@ import {
 import ShelfPageColumns from "./hooks/ShelfPageColumns.jsx";
 import useCreateShelf from "./hooks/useCreateShelf.js";
 import useDeleteShelf from "./hooks/useDeleteShelf.js";
+import useSearchShelf from "./hooks/useSearchShelf.js";
 
 const ShelfPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const [shelfData, setShelfData] = useState([]);
 
   const [shelfId, setShelfId] = useState("");
 
   const [shelfName, setShelfName] = useState(""); // wait for get shelf info by ID
 
   const { query } = useShelfPage();
+
+  useEffect(() => {
+    if (query?.data) {
+      setShelfData(query?.data);
+    }
+  }, [query?.data]);
 
   const {
     open: activateDelete,
@@ -65,6 +74,11 @@ const ShelfPage = () => {
     handleCloseAddDialog();
   };
 
+  const SearchShelf = async (data) => {
+    const searchData = await useSearchShelf(data);
+    setShelfData(searchData);
+  };
+
   const handleDelete = () => {
     deleteShelf(shelfId);
   };
@@ -75,13 +89,17 @@ const ShelfPage = () => {
 
   const columns = ShelfPageColumns();
 
-  if (query?.data === undefined) {
+  if (
+    (query?.data === undefined && shelfData?.length === 0) ||
+    shelfData?.length === 0
+  ) {
     return (
       <div>
-        <GlobalLoading /> ...
+        <GlobalLoading />
       </div>
     );
   }
+
   return (
     <>
       <SearchBarContainer>
@@ -90,14 +108,14 @@ const ShelfPage = () => {
           handleActivateDelete={handleActivateDelete}
           handleDeactivateDelete={handleDeactivateDelete}
           handleOpenAddDialog={handleOpenAddDialog}
+          handleSearchBar={SearchShelf}
         />
       </SearchBarContainer>
-
       <TableContainer>
         <ShelfPageDataTable
           columns={columns}
-          dataTable={query?.data?.shelves}
-          total={query?.data?.pagination}
+          dataTable={shelfData.shelves}
+          total={shelfData.pagination}
           pageIndex={searchParams.get("page") - 1}
           pageSize={SHELF_LIMIT}
           activateDelete={activateDelete}
@@ -105,7 +123,6 @@ const ShelfPage = () => {
           onPageChange={handlePageChange}
         />
       </TableContainer>
-
       <TablePopup
         style="pt-12"
         open={openDeleteDialog}
@@ -116,7 +133,6 @@ const ShelfPage = () => {
         onSubmit={handleDelete}
         onClose={handleCloseDeleteDialog}
       />
-
       <AddDialogShelf
         onSubmit={handleAddShelf}
         openAddForm={openAddDialog}

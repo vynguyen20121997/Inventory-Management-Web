@@ -9,6 +9,9 @@ const shelfPageServices = defineService({
     getList: (params) => {
       return api.getAll({ params });
     },
+    search: (payload) => {
+      return api.search({ payload });
+    },
   },
   mutation: {
     create: (payload) => {
