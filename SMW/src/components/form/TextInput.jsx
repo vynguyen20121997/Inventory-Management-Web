@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
-import { useFormContext, Controller } from 'react-hook-form';
+import { useFormContext, Controller } from "react-hook-form";
 
-const TextInput = ({ name = 'name', placeHolder = 'Nhập dữ liệu', style }) => {
+const TextInput = ({ name = "name", placeHolder = "Nhập dữ liệu", style }) => {
   const { control } = useFormContext({});
+
   return (
     <Controller
       name={name}

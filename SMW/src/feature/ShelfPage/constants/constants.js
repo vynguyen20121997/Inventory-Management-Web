@@ -5,6 +5,17 @@ export const DELETE_SHELF_ITEM_MESSAGE = {
   },
 };
 
+//SEVER RESPONSE
+export const SHELF_DELETE_ERROR = {
+  removeBeforeDelete: "Remove all supplies from shelves before deleting!",
+};
+
+export const SEARCH_SHELF_ITEM_MESSAGE = {
+  searchError: {
+    removeItem: "Please remove all supplies from shelves before delete!",
+  },
+};
+
 export const ADD_SHELF_ITEM_MESSAGE = {
   min: "Please Check Again",
 };
@@ -14,8 +25,10 @@ export const SHELF_DEFAULT_VALUES = {
   description: "",
 };
 
-export const SHELF_LIMIT = 12;
-
-export const SHELF_DELETE_ERROR = {
-  removeBeforeDelete: "Remove all supplies from shelves before deleting!",
+export const SHELF_SEARCH_BAR_DEFAULT_VALUES = {
+  searchData: "",
+  byShelf: false,
+  byItem: false,
 };
+
+export const SHELF_LIMIT = 12;

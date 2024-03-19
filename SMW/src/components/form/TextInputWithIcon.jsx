@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
-import { useForm, Controller } from "react-hook-form";
+import { useFormContext, Controller } from "react-hook-form";
 import SearchIcon from "/src/assets/search-icon.svg";
 
 const TextInputWithSearchIcon = ({
-  name = "search",
+  name,
   placeHolder = "Search",
   handleSubmit,
   ...rest
 }) => {
-  const { control } = useForm();
+  const { control } = useFormContext();
 
   return (
     <Controller

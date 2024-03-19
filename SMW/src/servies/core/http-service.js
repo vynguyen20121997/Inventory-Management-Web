@@ -15,6 +15,12 @@ class HttpService {
     return apiClient.get(this.endpoint + "/" + id).then((res) => res.data);
   };
 
+  search = (data) => {
+    return apiClient
+      .get(this.endpoint + "/search" + data)
+      .then((res) => res.data);
+  };
+
   create = (data) => {
     return apiClient.post(this.endpoint, data).then((res) => res.data);
   };

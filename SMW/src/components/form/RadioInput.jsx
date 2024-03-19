@@ -3,6 +3,7 @@ import { useFormContext, Controller } from "react-hook-form";
 
 const RadioInput = ({ name = "name", style }) => {
   const { control } = useFormContext({});
+
   return (
     <Controller
       name={name}
@@ -18,6 +19,7 @@ const RadioInput = ({ name = "name", style }) => {
             onChange={(e) => {
               field.onChange(e);
             }}
+            checked={!!field.value}
           />
         </>
       )}
