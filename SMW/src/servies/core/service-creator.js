@@ -56,11 +56,11 @@ export function createUseMutation(service) {
       },
       onError: (error) => {
         // An error happened!
-        options.onError(error.data);
+        options.onError(error);
       },
       onSuccess: (data) => {
         // Boom baby!
-        options.onSuccess(data.data);
+        options.onSuccess(data);
       },
     });
     return {

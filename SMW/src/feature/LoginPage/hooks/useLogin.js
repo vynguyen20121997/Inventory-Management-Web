@@ -15,7 +15,7 @@ const useLogin = () => {
     },
     {
       onSuccess(data) {
-        auth.setToken(data.accessToken);
+        auth.setToken(data.data.accessToken);
         toast("Login Successfully!");
         navigate(PATHS.shelf);
       },
