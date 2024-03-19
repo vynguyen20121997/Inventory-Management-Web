@@ -17,6 +17,7 @@ import {
 } from "./constants/constants.js";
 import ShelfPageColumns from "./hooks/ShelfPageColumns.jsx";
 import useCreateShelf from "./hooks/useCreateShelf.js";
+import useDeleteShelf from "./hooks/useDeleteShelf.js";
 
 const ShelfPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,8 +27,6 @@ const ShelfPage = () => {
   const [shelfName, setShelfName] = useState(""); // wait for get shelf info by ID
 
   const { query } = useShelfPage();
-
-  const { createShelf } = useCreateShelf();
 
   const {
     open: activateDelete,
@@ -53,13 +52,21 @@ const ShelfPage = () => {
     setShelfName(name);
   };
 
+  const { createShelf } = useCreateShelf();
+
+  const { deleteShelf } = useDeleteShelf({
+    onSettled() {
+      handleCloseDeleteDialog();
+    },
+  });
+
   const handleAddShelf = (data) => {
     createShelf(data);
     handleCloseAddDialog();
   };
 
   const handleDelete = () => {
-    console.log(shelfId);
+    deleteShelf(shelfId);
   };
 
   const handlePageChange = ({ pageIndex }) => {
