@@ -7,7 +7,7 @@ import {
   TableContainer,
 } from "../../components/pageContainer";
 import useToogleDialog from "../../hooks/useToogleDialog.js";
-import { useShelfPage } from "../../queries/shelfPage/shelfPageQuery.js";
+import { useShelves } from "../../queries/shelfPage/shelfPageQuery.js";
 import AddDialogShelf from "./components/AddDialogShelf.jsx";
 import ShelfPageDataTable from "./components/ShelfPageDataTable.jsx";
 import ShelfSearchBar from "./components/ShelfSearchBar.jsx";
@@ -29,7 +29,7 @@ const ShelfPage = () => {
 
   const [shelfName, setShelfName] = useState(""); // wait for get shelf info by ID
 
-  const { query } = useShelfPage();
+  const { query } = useShelves();
 
   useEffect(() => {
     if (query?.data) {

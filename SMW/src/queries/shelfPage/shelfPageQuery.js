@@ -1,7 +1,7 @@
 import { ENTITY } from "../../constant/enums";
 import { UseAppQuery } from "../../servies";
 
-export const useShelfPage = (params) => {
+export const useShelves = (params) => {
   return UseAppQuery({
     action: "getList",
     entity: ENTITY.SHELFPAGE,

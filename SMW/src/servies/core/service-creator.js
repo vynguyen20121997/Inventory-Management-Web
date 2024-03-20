@@ -19,7 +19,7 @@ export function composeServices(serviceMap) {
 }
 
 export function createUseQuery(service) {
-  return function InferQuery(inferredBase) {
+  return function InferQuery(inferredBase, params) {
     const queryKeyString = `${String(inferredBase.entity)}_${String(inferredBase.action)}`;
     function useQueryBase() {
       const queryKey = queryKeyString;
@@ -29,7 +29,7 @@ export function createUseQuery(service) {
           try {
             return await service[inferredBase.entity]["query"][
               inferredBase.action
-            ]();
+            ](params);
           } catch (e) {
             errorHandling(e.response.data.message);
           }

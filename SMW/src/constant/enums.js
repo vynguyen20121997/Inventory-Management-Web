@@ -18,7 +18,7 @@ export const ENTITY = {
   USER: "user",
   //ShelfPage
   SHELFPAGE: "shelves",
-  SHELFPAGESHELF: "supplies",
+  SHELFPAGESHELF: "shelf",
 };
 
 export const GET_LIST_DIRECTION = {

@@ -5,6 +5,7 @@ import {
   createUseQuery,
 } from "./core/service-creator";
 import shelfPageServices from "./shelfPage/shelfPageServices";
+import shelfPageShelfServices from "./shelfPage/shelfPageShelfServices";
 import userService from "./userService";
 
 export const rootService = composeServices({
@@ -12,6 +13,7 @@ export const rootService = composeServices({
   user: userService,
   //ShelfPage:
   shelves: shelfPageServices,
+  shelf: shelfPageShelfServices,
 });
 
 export const UseAppQuery = createUseQuery(rootService);

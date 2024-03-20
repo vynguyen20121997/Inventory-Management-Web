@@ -2,6 +2,7 @@ import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import { NAVBAR_ITEMS, NAVPROFILE_ITEMS } from "../../constant/constants";
 import LogoIcon from "/src/assets/logo.svg";
 import UserIcon from "/src/assets/user-circle.svg";
+import { useSelector } from "react-redux";
 
 // eslint-disable-next-line react/prop-types
 const NavBar = ({ children }) => {
@@ -9,7 +10,7 @@ const NavBar = ({ children }) => {
   const params = useParams();
   const location = useLocation();
   const parentRoute = location.pathname.split("/")[1];
-
+  const shelf = useSelector((state) => state.shelf.fetchShelfResources);
   return (
     <>
       <div className=" grid  grid-rows-10 grid-cols-10  h-screen bg-gray-100  text-black">
@@ -49,7 +50,7 @@ const NavBar = ({ children }) => {
                         <p className="font-normal text-2xl ">
                           {path === "export"
                             ? `${params.id}`
-                            : `${title} ${params.id}`}
+                            : ` ${shelf.title}`}
                         </p>
                       </li>
                     </ul>
