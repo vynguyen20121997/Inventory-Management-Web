@@ -1,24 +1,40 @@
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
 import DataTable from "../../components/dataTable/DataTable";
 import {
-  TableContainer,
   SearchBarContainer,
+  TableContainer,
 } from "../../components/pageContainer";
-import ShelfPageShelfColumns from "./hooks/ShelfPageShelfColumns";
 import { dataTableShelf } from "../../tests/dataTable";
-import { SHELF_ITEM_LIMIT } from "./constants/constants";
-import { useSearchParams } from "react-router-dom";
 import {
   AddDialogShelfPageShelf,
   EditDialogShelfPageShelf,
   SearchBarShelfPageShelf,
 } from "./components";
-// import { useShelfPageShelfItems } from "../../queries/shelfPageShelf/shelfPageShelfQuery";
-// import { GET_LIST_DIRECTION } from "../../constant/enums";
+import { SHELF_ITEM_LIMIT } from "./constants/constants";
+import ShelfPageShelfColumns from "./hooks/ShelfPageShelfColumns";
+
+import { useDispatch } from "react-redux";
 import useToogleDialog from "../../hooks/useToogleDialog";
+import { useShelf } from "../../queries/shelfPage/shelfPageShelfQuery.js";
+import { shelfInfo } from "../../redux/shelf/shelfSlice";
+import GlobalLoading from "../../components/globalLoading/GlobalLoading";
 
 const ShelfPageShelf = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const params = useParams();
+  const dispatch = useDispatch();
+
+  const [shelfData, setShelfData] = useState([]);
+
+  const { query } = useShelf(params.id);
+
+  useEffect(() => {
+    if (query?.data) {
+      dispatch(shelfInfo(query.data.shelves));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query?.data]);
 
   const {
     open: openAddDialog,
@@ -46,16 +62,6 @@ const ShelfPageShelf = () => {
     handleOpenEditDialog();
   }, [handleOpenEditDialog]);
 
-  // const page = 1;
-
-  // const { data } = useShelfPageShelfItems({
-  //   ...searchParams,
-  //   page,
-  //   limit: SHELF_ITEM_LIMIT,
-  //   order: "updated_at",
-  //   direction: GET_LIST_DIRECTION.DESC,
-  // });
-
   const columns = ShelfPageShelfColumns({
     onEdit: handleClickOpenEdit,
     onDelete: () => {},
@@ -64,6 +70,14 @@ const ShelfPageShelf = () => {
   const handlePageChange = ({ pageIndex }) => {
     setSearchParams({ page: pageIndex });
   };
+
+  if (query?.data === undefined) {
+    return (
+      <div>
+        <GlobalLoading />
+      </div>
+    );
+  }
 
   return (
     <>
