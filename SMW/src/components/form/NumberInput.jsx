@@ -1,18 +1,18 @@
 import { Controller, useFormContext } from "react-hook-form";
-import { NumericFormat } from "react-number-format";
 
 // eslint-disable-next-line react/prop-types
 const NumberInput = ({ name = "name", style }) => {
   const { control } = useFormContext({});
   return (
     <Controller
-      control={control}
       name={name}
+      control={control}
       render={({ field }) => (
-        <NumericFormat
-          className={` ${style}  outline-none  bg-white focus:outline-none  focus:ring-0 border-[1px] p-1 border-[#E1E1E1] rounded-lg `}
+        <input
+          type="number"
           {...field}
           id={name}
+          className={` ${style}  outline-none  bg-white focus:outline-none  focus:ring-0 border-[1px] p-1 border-[#E1E1E1] rounded-lg  `}
           onChange={(e) => {
             field.onChange(e);
           }}

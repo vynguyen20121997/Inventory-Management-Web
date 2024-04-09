@@ -10,6 +10,7 @@ export const PATHS = {
 
   //InventoryPage:
   inventory: "inventory",
+  inventoryReport: "inventory/report",
   //ImportHistoryPage:
   import_history: "import-history",
   //ExportHistoryPage:

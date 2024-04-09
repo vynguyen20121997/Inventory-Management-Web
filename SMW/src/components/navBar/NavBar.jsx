@@ -3,6 +3,7 @@ import { NAVBAR_ITEMS, NAVPROFILE_ITEMS } from "../../constant/constants";
 import LogoIcon from "/src/assets/logo.svg";
 import UserIcon from "/src/assets/user-circle.svg";
 import { useSelector } from "react-redux";
+import { PATHS } from "../../constant/urls";
 
 // eslint-disable-next-line react/prop-types
 const NavBar = ({ children }) => {
@@ -22,35 +23,53 @@ const NavBar = ({ children }) => {
 
             <div className="h-[1px] w-full bg-[#F2F2F2] mt-[9.6px]" />
           </div>
-          <ul className=" menu mx-auto px-2  ">
+          <ul key="02300menu" className=" menu mx-auto px-2  ">
             {NAVBAR_ITEMS.map(({ path, title }) => (
               <>
                 <li
                   key={title}
                   onClick={() => navigate(path)}
-                  className={`tooltip w-full ${parentRoute === `${path}` && params.id === undefined ? "bg-[#B5DCFD]" : "bg-transparent"} rounded-md`}
-                  data-tip={title}
+                  className={` w-full ${parentRoute === `${path}` && params.id === undefined ? "bg-[#B5DCFD]" : "bg-transparent"}  rounded-md`}
                 >
                   {path === parentRoute && path === "export" ? (
-                    <p className="font-normal text-2xl text-left align-middle">
+                    <p
+                      className="tooltip font-normal text-2xl text-left align-middle"
+                      data-tip={title}
+                    >
                       {title}
                       <div className="badge w-[30px] h-[30px] bg-[#008AFF] border-none text-white rounded-full">
                         +99
                       </div>
                     </p>
                   ) : (
-                    <p className="font-normal text-2xl text-left align-middle">
+                    <p
+                      className="tooltip font-normal text-2xl text-left align-middle"
+                      data-tip={title}
+                    >
                       {title}
                     </p>
                   )}
-
-                  {path === parentRoute && params.id !== undefined ? (
-                    <ul className="bg-[#B5DCFD] rounded-md ml-0 pl-6 ">
+                  {path === parentRoute &&
+                  parentRoute !== PATHS.inventory &&
+                  params.id !== undefined ? (
+                    <ul
+                      className="bg-[#B5DCFD] rounded-md ml-0 pl-6 "
+                      key="010"
+                    >
                       <li key="090">
                         <p className="font-normal text-2xl ">
-                          {path === "export"
+                          {path === PATHS.export
                             ? `${params.id}`
                             : ` ${shelf.title}`}
+                        </p>
+                      </li>
+                    </ul>
+                  ) : path === parentRoute &&
+                    parentRoute === PATHS.inventory ? (
+                    <ul className="bg-white rounded-md ml-0 pl-0 " key="020">
+                      <li key="080">
+                        <p className="font-normal text-2xl text-nowrap	text-[#696969] ">
+                          Inventory Report
                         </p>
                       </li>
                     </ul>
@@ -77,6 +96,7 @@ const NavBar = ({ children }) => {
                   </div>
                 </div>
                 <ul
+                  key="profieMenu"
                   tabIndex={0}
                   className=" z-[1] shadow menu menu-sm dropdown-content bg-white rounded-box "
                 >

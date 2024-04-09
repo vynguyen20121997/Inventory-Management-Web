@@ -5,7 +5,7 @@ const Select = ({
   name,
   label,
   options,
-  placeholder = "PlaceHolder",
+  placeholder = "Please Select",
   style,
 }) => {
   const { control } = useFormContext();
@@ -25,14 +25,15 @@ const Select = ({
             )}
 
             <select
+              key={name}
               {...field}
               className={`select bg-white outline-none border-[1px] border-[#E1E1E1]  focus:outline-none focus:ring-0 rounded-[10px] text-xl ${style}`}
             >
-              <option disabled>{placeholder}</option>
+              <option key="default">{placeholder}</option>
               {options?.map((op) => (
-                <>
-                  <option>{op.title}</option>
-                </>
+                <option key={op._id} value={op._id}>
+                  {op.title}
+                </option>
               ))}
             </select>
           </label>
