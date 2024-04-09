@@ -14,6 +14,8 @@ import { INVENTORY_PAGE_LIMIT } from "./constants/constants";
 import InventoryPageColumns from "./hooks/InventoryPageColumns";
 import { useGroups } from "../../queries/inventory/groupQuery";
 import useAddSupply from "./hooks/useAddSupply";
+import useSearchSupply from "./hooks/useSearchSupply";
+import { insertNo } from "../../utils/insertNo";
 
 const InventoryPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,10 +25,7 @@ const InventoryPage = () => {
   const { query: groups } = useGroups();
 
   useEffect(() => {
-    const tableData = query?.data?.supplies.map((e, index) => ({
-      ...e,
-      no: index,
-    }));
+    const tableData = insertNo(query?.data?.supplies);
     setInventoryDataTable(tableData);
   }, [query?.data?.supplies]);
 
@@ -51,6 +50,14 @@ const InventoryPage = () => {
     handleCloseAddDialog();
   };
 
+  const SearchSupply = async (data) => {
+    const searchData = await useSearchSupply(data);
+    if (searchData.supplies) {
+      const tableData = insertNo(searchData.supplies);
+      setInventoryDataTable(tableData);
+    }
+  };
+
   const columns = InventoryPageColumns({
     onEdit: () => {},
     onDelete: () => {},
@@ -69,7 +76,10 @@ const InventoryPage = () => {
   return (
     <>
       <SearchBarContainer>
-        <SearchBarInventory handleClickOpenAdd={handleClickOpenAdd} />
+        <SearchBarInventory
+          handleClickOpenAdd={handleClickOpenAdd}
+          handleSearchBar={SearchSupply}
+        />
       </SearchBarContainer>
 
       <TableContainer>

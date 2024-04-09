@@ -2,15 +2,21 @@ import { useForm } from "react-hook-form";
 import Button from "../../../components/button/Button";
 import TextInputWithSearchIcon from "../../../components/form/TextInputWithIcon";
 import Form from "../../../components/form/form/Form";
+import { SEARCH_INVENTORY_ITEM_DEFAULT_VALUES } from "../constants/constants";
+import useInventoryPageSearchSchema from "../validations/inventory-search-item";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 // eslint-disable-next-line react/prop-types
-const SearchBarInventory = ({ handleClickOpenAdd }) => {
-  const methods = useForm({});
+const SearchBarInventory = ({ handleClickOpenAdd, handleSearchBar }) => {
+  const methods = useForm({
+    resolver: zodResolver(useInventoryPageSearchSchema()),
+    defaultValues: SEARCH_INVENTORY_ITEM_DEFAULT_VALUES,
+  });
 
   const { handleSubmit } = methods;
 
   const handleFormSubmit = handleSubmit((data) => {
-    console.log(data);
+    handleSearchBar(data);
   });
 
   return (
@@ -18,7 +24,7 @@ const SearchBarInventory = ({ handleClickOpenAdd }) => {
       <Form methods={methods} onSubmit={handleFormSubmit}>
         <div>
           <TextInputWithSearchIcon
-            name="searchItemData"
+            name="searchData"
             handleSubmit={handleFormSubmit}
           />
         </div>

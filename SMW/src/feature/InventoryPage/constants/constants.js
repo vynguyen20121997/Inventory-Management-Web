@@ -1,10 +1,15 @@
-export const INVENTORY_ITEM_DEFAULT_VALUES = {
+export const ADD_INVENTORY_ITEM_DEFAULT_VALUES = {
   group: "",
   name: "",
   unit: "",
   price: 0,
   quantity: 0,
 };
+
+export const SEARCH_INVENTORY_ITEM_DEFAULT_VALUES = {
+  searchData: "",
+};
+
 export const EDIT_INVENTORY_ITEM_DEFAULT_VALUES = {
   edit: 0,
 };

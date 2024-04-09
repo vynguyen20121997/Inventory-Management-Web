@@ -17,17 +17,16 @@ const NavBar = ({ children }) => {
       <div className=" grid  grid-rows-10 grid-cols-10  h-screen bg-gray-100  text-black">
         <div className="flex-col row-span-10 col-span-1  bg-white ">
           <div className=" h-24 py-4  ">
-            <div className="flex justify-center  ">
+            <div className="flex justify-center">
               <img src={LogoIcon} alt="logo" />
             </div>
-
             <div className="h-[1px] w-full bg-[#F2F2F2] mt-[9.6px]" />
           </div>
-          <ul key="02300menu" className=" menu mx-auto px-2  ">
+          <ul key="0123aefa1786417osjef" className=" menu mx-auto px-2  ">
             {NAVBAR_ITEMS.map(({ path, title }) => (
               <>
                 <li
-                  key={title}
+                  key={path}
                   onClick={() => navigate(path)}
                   className={` w-full ${parentRoute === `${path}` && params.id === undefined ? "bg-[#B5DCFD]" : "bg-transparent"}  rounded-md`}
                 >
@@ -54,9 +53,9 @@ const NavBar = ({ children }) => {
                   params.id !== undefined ? (
                     <ul
                       className="bg-[#B5DCFD] rounded-md ml-0 pl-6 "
-                      key="010"
+                      key="010sdfsewe234"
                     >
-                      <li key="090">
+                      <li key="09wrf3w45sfg0">
                         <p className="font-normal text-2xl ">
                           {path === PATHS.export
                             ? `${params.id}`
@@ -66,8 +65,11 @@ const NavBar = ({ children }) => {
                     </ul>
                   ) : path === parentRoute &&
                     parentRoute === PATHS.inventory ? (
-                    <ul className="bg-white rounded-md ml-0 pl-0 " key="020">
-                      <li key="080">
+                    <ul
+                      className="bg-white rounded-md ml-0 pl-0 "
+                      key="0aefasefw420"
+                    >
+                      <li key="32q33qrqdff">
                         <p className="font-normal text-2xl text-nowrap	text-[#696969] ">
                           Inventory Report
                         </p>
@@ -96,7 +98,7 @@ const NavBar = ({ children }) => {
                   </div>
                 </div>
                 <ul
-                  key="profieMenu"
+                  key="profasefsefwieMenu"
                   tabIndex={0}
                   className=" z-[1] shadow menu menu-sm dropdown-content bg-white rounded-box "
                 >
