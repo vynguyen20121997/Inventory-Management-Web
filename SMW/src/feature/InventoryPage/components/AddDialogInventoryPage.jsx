@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import FormDialog from "../../../components/form/form/FormDialog";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Select from "../../../components/form/customInput/Select";
 import NumberInput from "../../../components/form/NumberInput";
 import { ADD_INVENTORY_ITEM_DEFAULT_VALUES } from "../constants/constants";
 import useInventoryPageAddSchema from "../validations/inventory-add-item";
 import TextInput from "../../../components/form/TextInput";
+import Select from "../../../components/form/Select";
 
 // eslint-disable-next-line react/prop-types
 const AddDialogInventoryPage = ({

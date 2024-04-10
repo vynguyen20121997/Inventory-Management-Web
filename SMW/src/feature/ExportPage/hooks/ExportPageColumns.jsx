@@ -1,4 +1,6 @@
-const ExportPageColumns = () => {
+import TableActionsCollumns from "../../../components/dataTable/TableCheckBoxCollumns";
+
+const ExportPageColumns = ({ onClick }) => {
   const columns = [
     {
       accessorKey: "no",
@@ -6,13 +8,22 @@ const ExportPageColumns = () => {
       cell: (info) => <div>{info.getValue()}</div>,
     },
     {
+      accessorKey: "action",
+      header: "",
+      cell: (info) => (
+        <div>
+          <TableActionsCollumns onClick={() => onClick(info.getValue())} />
+        </div>
+      ),
+    },
+    {
       accessorKey: "name",
       header: "Name",
       cell: (info) => <div>{info.getValue()}</div>,
     },
     {
-      accessorKey: "unit",
-      header: "Unit",
+      accessorKey: "openBalance",
+      header: "Open Balance",
       cell: (info) => <div>{info.getValue()}</div>,
     },
     {
@@ -21,13 +32,23 @@ const ExportPageColumns = () => {
       cell: (info) => <div>{info.getValue()}</div>,
     },
     {
-      accessorKey: "price",
-      header: "Price",
+      accessorKey: "export",
+      header: "Export",
       cell: (info) => <div>{info.getValue()}</div>,
     },
     {
-      accessorKey: "total",
-      header: "Total",
+      accessorKey: "balance",
+      header: "Balance",
+      cell: (info) => <div>{info.getValue()}</div>,
+    },
+    {
+      accessorKey: "unit",
+      header: "Unit",
+      cell: (info) => <div>{info.getValue()}</div>,
+    },
+    {
+      accessorKey: "price",
+      header: "Price",
       cell: (info) => <div>{info.getValue()}</div>,
     },
   ];

@@ -23,7 +23,9 @@ const ExportPage = () => {
   const handlePageChange = ({ pageIndex }) => {
     setSearchParams({ page: pageIndex });
   };
-  const columns = ExportPageColumns();
+  const columns = ExportPageColumns({
+    onClick: () => {},
+  });
 
   return (
     <>
@@ -36,9 +38,7 @@ const ExportPage = () => {
       <TableContainer>
         <DataTable
           columns={columns}
-          dataTable={Array(EXPORT_PAGE_DATA_LIMIT).fill(
-            dataTableExport.data[0]
-          )}
+          dataTable={Array(8).fill(dataTableExport.data[0])}
           total={dataTableExport.total}
           onPageChange={handlePageChange}
           pageIndex={searchParams.get("page") - 1}
