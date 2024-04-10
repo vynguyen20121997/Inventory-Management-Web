@@ -25,8 +25,10 @@ const InventoryPage = () => {
   const { query: groups } = useGroups();
 
   useEffect(() => {
-    const tableData = insertNo(query?.data?.supplies);
-    setInventoryDataTable(tableData);
+    if (query?.data?.supplies) {
+      const tableData = insertNo(query.data.supplies);
+      setInventoryDataTable(tableData);
+    }
   }, [query?.data?.supplies]);
 
   const {
@@ -63,44 +65,43 @@ const InventoryPage = () => {
     onDelete: () => {},
   });
 
-  if (
-    (query?.data === undefined && inventoryDataTable === undefined) ||
-    inventoryDataTable === undefined
-  ) {
+  if (query?.data?.supplies === undefined || inventoryDataTable === undefined) {
     return (
       <div>
         <GlobalLoading />
       </div>
     );
+  } else {
+    return (
+      <>
+        <SearchBarContainer>
+          <SearchBarInventory
+            handleClickOpenAdd={handleClickOpenAdd}
+            handleSearchBar={SearchSupply}
+          />
+        </SearchBarContainer>
+
+        <TableContainer>
+          <DataTable
+            columns={columns}
+            dataTable={inventoryDataTable}
+            total={query?.data?.pagination}
+            pageIndex={searchParams.get("page") - 1}
+            pageSize={INVENTORY_PAGE_LIMIT}
+            onPageChange={handlePageChange}
+          />
+        </TableContainer>
+
+        <AddDialogInventoryPage
+          open={openAddDialog}
+          onClose={handleCloseAddDialog}
+          onSubmit={handleAddSupply}
+          groupData={groups?.data?.groups}
+        />
+      </>
+    );
   }
-  return (
-    <>
-      <SearchBarContainer>
-        <SearchBarInventory
-          handleClickOpenAdd={handleClickOpenAdd}
-          handleSearchBar={SearchSupply}
-        />
-      </SearchBarContainer>
-
-      <TableContainer>
-        <DataTable
-          columns={columns}
-          dataTable={inventoryDataTable}
-          total={query?.data?.pagination}
-          pageIndex={searchParams.get("page") - 1}
-          pageSize={INVENTORY_PAGE_LIMIT}
-          onPageChange={handlePageChange}
-        />
-      </TableContainer>
-
-      <AddDialogInventoryPage
-        open={openAddDialog}
-        onClose={handleCloseAddDialog}
-        onSubmit={handleAddSupply}
-        groupData={groups?.data?.groups}
-      />
-    </>
-  );
+  // return null;
 };
 
 export default InventoryPage;

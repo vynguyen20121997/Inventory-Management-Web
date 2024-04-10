@@ -11,7 +11,7 @@ import TemplateExportPage from "../feature/ExportPage/components/TemplateExportP
 import ShelfPage from "../feature/ShelfPage/ShelfPage";
 import LoginPage from "../feature/LoginPage/LoginPage";
 import InventoryPage from "../feature/InventoryPage/InventoryPage";
-import InventoryExportPage from "../feature/InventoryExportPage/InventoryExportPage";
+import InventoryReportPage from "../feature/InventoryReportPage/InventoryReportPage";
 const sentryCreateBrowserRouter = wrapCreateBrowserRouter(createBrowserRouter);
 
 const router = sentryCreateBrowserRouter([
@@ -70,7 +70,7 @@ const router = sentryCreateBrowserRouter([
       },
       {
         path: PATHS.inventoryReport,
-        element: <InventoryExportPage />,
+        element: <InventoryReportPage />,
         // handle: {
         //   roles:
         // },

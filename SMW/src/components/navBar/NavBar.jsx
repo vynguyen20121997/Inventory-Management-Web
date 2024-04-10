@@ -11,6 +11,7 @@ const NavBar = ({ children }) => {
   const params = useParams();
   const location = useLocation();
   const parentRoute = location.pathname.split("/")[1];
+  const childRoute = location.pathname.split("/")[2];
   const shelf = useSelector((state) => state.shelf.fetchShelfResources);
   return (
     <>
@@ -28,7 +29,7 @@ const NavBar = ({ children }) => {
                 <li
                   key={path}
                   onClick={() => navigate(path)}
-                  className={` w-full ${parentRoute === `${path}` && params.id === undefined ? "bg-[#B5DCFD]" : "bg-transparent"}  rounded-md`}
+                  className={` w-full ${parentRoute === `${path}` && params.id === undefined && childRoute === undefined ? "bg-[#B5DCFD]" : "bg-transparent"}  rounded-md`}
                 >
                   {path === parentRoute && path === "export" ? (
                     <p
@@ -68,12 +69,21 @@ const NavBar = ({ children }) => {
                     <ul
                       className="bg-white rounded-md ml-0 pl-0 "
                       key="0aefasefw420"
+                      // onClick={() => navigate(PATHS.inventoryReport)}
                     >
-                      <li key="32q33qrqdff">
-                        <p className="font-normal text-2xl text-nowrap	text-[#696969] ">
-                          Inventory Report
-                        </p>
-                      </li>
+                      {childRoute ? (
+                        <li key="32q33qrqdff">
+                          <p className="font-normal text-2xl text-nowrap bg-[#B5DCFD]	text-[#696969] ">
+                            Inventory Report
+                          </p>
+                        </li>
+                      ) : (
+                        <li key="32q33rqdwwfweff">
+                          <p className="font-normal text-2xl text-nowrap	text-[#696969] ">
+                            Inventory Report
+                          </p>
+                        </li>
+                      )}
                     </ul>
                   ) : null}
                 </li>
