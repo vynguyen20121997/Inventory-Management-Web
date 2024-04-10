@@ -12,6 +12,7 @@ import { useImportHistories } from "../../queries/importHistory/importHistoryQue
 import { useEffect, useState } from "react";
 import { insertNo } from "../../utils/insertNo";
 import { calculateTotal } from "../../utils/calculateTotal";
+import useSearchImportHistory from "./hooks/useSearchImportHistory";
 
 const ImportHistoryPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -34,11 +35,22 @@ const ImportHistoryPage = () => {
   const handlePageChange = ({ pageIndex }) => {
     setSearchParams({ page: pageIndex });
   };
-  console.log(query.data);
+
+  const SearchImportHistory = async (data) => {
+    const searchData = await useSearchImportHistory(data);
+    if (searchData.supplies) {
+      const tableDataNo = insertNo(searchData.supplies);
+      if (tableDataNo) {
+        const tableData = calculateTotal(tableDataNo);
+        setImportHistoryDataTable(tableData);
+      }
+    }
+  };
+
   return (
     <>
       <SearchBarContainer>
-        <SearchBarImportHistoryPage />
+        <SearchBarImportHistoryPage handleSearchBar={SearchImportHistory} />
       </SearchBarContainer>
 
       <TableContainer>
