@@ -22,6 +22,7 @@ const InventoryPage = () => {
   const [inventoryDataTable, setInventoryDataTable] = useState([]);
 
   const { query } = useinventory();
+
   const { query: groups } = useGroups();
 
   useEffect(() => {

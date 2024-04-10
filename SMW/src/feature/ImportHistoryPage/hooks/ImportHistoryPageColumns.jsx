@@ -6,12 +6,12 @@ const ImportHistoryPageColumns = () => {
       cell: (info) => <div>{info.getValue()}</div>,
     },
     {
-      accessorKey: "name",
+      accessorKey: "title",
       header: "Name",
       cell: (info) => <div>{info.getValue()}</div>,
     },
     {
-      accessorKey: "shelf",
+      accessorKey: "inShelves",
       header: "Shelf",
       cell: (info) => <div>{info.getValue()}</div>,
     },
@@ -26,9 +26,9 @@ const ImportHistoryPageColumns = () => {
       cell: (info) => <div>{info.getValue()}</div>,
     },
     {
-      accessorKey: "change",
+      accessorKey: "import",
       header: "Change",
-      cell: (info) => <div>{info.getValue()}</div>,
+      cell: (info) => <div>+{info.getValue()}</div>,
     },
     {
       accessorKey: "balance",
@@ -43,7 +43,7 @@ const ImportHistoryPageColumns = () => {
     {
       accessorKey: "total",
       header: "Total",
-      cell: (info) => <div>{info.getValue()}</div>,
+      cell: (info) => <div>${info.getValue()}</div>,
     },
   ];
   return columns;

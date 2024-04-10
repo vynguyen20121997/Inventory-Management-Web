@@ -22,6 +22,8 @@ export const ENTITY = {
   //InventoryPage
   INVENTORY: "inventory",
   GROUP: "group",
+  //Import History
+  IMPORT_HISTORY: "importHistory",
 };
 
 export const GET_LIST_DIRECTION = {

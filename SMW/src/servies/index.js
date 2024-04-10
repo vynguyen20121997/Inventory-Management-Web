@@ -4,6 +4,7 @@ import {
   createUseMutation,
   createUseQuery,
 } from "./core/service-creator";
+import importHistoryPageServices from "./importHistoryPage/importHistoryPageServices";
 import inventoryPageServices from "./inventoryPage/inventoryPageServices";
 import supplyGroupServices from "./inventoryPage/supplyGroupServices";
 import shelfPageServices from "./shelfPage/shelfPageServices";
@@ -19,6 +20,8 @@ export const rootService = composeServices({
   //Inventory Page:
   inventory: inventoryPageServices,
   group: supplyGroupServices,
+  //import History Page:
+  importHistory: importHistoryPageServices,
 });
 
 export const UseAppQuery = createUseQuery(rootService);
